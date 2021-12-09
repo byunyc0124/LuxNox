@@ -1,5 +1,6 @@
 package bycpkn.luxnox;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -7,11 +8,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Set;
+
 public class Stage1 extends AppCompatActivity {
     ImageView left;
     ImageView straight;
     ImageView right;
     ImageView backgroundImg;
+    ImageView setting;
 
     /*
         스테이지1 배경 플래그
@@ -36,6 +40,7 @@ public class Stage1 extends AppCompatActivity {
         straight = findViewById(R.id.arrow_straight);
         right = findViewById(R.id.arrow_right);
         backgroundImg = findViewById(R.id.imgbg);
+        setting = findViewById(R.id.setting);
 
         // 방향 버튼 제어
         // 왼쪽
@@ -146,6 +151,14 @@ public class Stage1 extends AppCompatActivity {
             }
         });
 
+        // 세팅 버튼
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Stage1.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
