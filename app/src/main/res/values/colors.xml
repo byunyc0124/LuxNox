@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="norang">#FBCA80</color>
+    <color name="norang">#FAECC5</color>
     <color name="ripple_background">#D3D3D3</color>
     <color name="numbers_background">#D3D3D3</color>
 </resources>

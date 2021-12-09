@@ -17,14 +17,18 @@
             android:id="@+id/grid_img"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:numColumns="4"/>
+            android:numColumns="4"
+            android:background="@drawable/ripple"/>
 
-        <Button
-            android:id="@+id/button_setting"
+        <ImageView
+            android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="setting" />
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/setting"
+            android:clickable="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/ripple"/>
     </LinearLayout>
 
     <FrameLayout
@@ -49,6 +53,7 @@
             android:id="@+id/arrow_straight"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginBottom="50dp"
             android:layout_gravity="bottom|center"
             android:src="@drawable/arrow_straight"
             android:clickable="true"
