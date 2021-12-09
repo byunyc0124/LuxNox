@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:background="@color/norang"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <GridView
+            android:id="@+id/grid_img"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:background="@drawable/ripple"/>
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/setting"
+            android:clickable="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/ripple"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imgbg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType = "fitXY"
+            android:src="@drawable/stage2_1"/>
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/arrow_left"
+            android:clickable="true"
+            android:background="@drawable/ripple"/>
+        <ImageView
+            android:id="@+id/arrow_straight"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="bottom|center"
+            android:src="@drawable/arrow_straight"
+            android:clickable="true"
+            android:background="@drawable/ripple"/>
+        <ImageView
+            android:id="@+id/arrow_right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/arrow_right"
+            android:clickable="true"
+            android:background="@drawable/ripple"/>
+    </FrameLayout>
+
+
+</LinearLayout>
