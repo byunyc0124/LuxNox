@@ -12,6 +12,7 @@ public class Stage1 extends AppCompatActivity {
     ImageView straight;
     ImageView right;
     ImageView backgroundImg;
+
     /*
         스테이지1 배경 플래그
         0 : stage1_1
@@ -24,6 +25,8 @@ public class Stage1 extends AppCompatActivity {
         7 : stage1_5
      */
     int flag = 0;
+
+    private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +55,16 @@ public class Stage1 extends AppCompatActivity {
                     flag = 3;
                 }
                 else if (flag == 3) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    backgroundImg.setImageResource(R.drawable.stage1_3);
+                    flag = 4;
                 }
                 else if (flag == 4) {
                     backgroundImg.setImageResource(R.drawable.stage1_3left);
                     flag = 5;
                 }
                 else if (flag == 5) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    backgroundImg.setImageResource(R.drawable.stage1_1);
+                    flag = 0;
                 }
                 else if (flag == 6) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
@@ -76,7 +81,6 @@ public class Stage1 extends AppCompatActivity {
             public void onClick(View v) {
                 if(flag == 0) {
                     backgroundImg.setImageResource(R.drawable.stage1_2);
-                    straight.setImageResource(R.drawable.arrow_straight_down);
                     flag = 2;
                 }
                 else if (flag == 1) {
@@ -84,7 +88,6 @@ public class Stage1 extends AppCompatActivity {
                 }
                 else if (flag == 2) {
                     backgroundImg.setImageResource(R.drawable.stage1_3);
-                    straight.setImageResource(R.drawable.arrow_straight);
                     flag = 4;
                 }
                 else if (flag == 3) {
@@ -112,7 +115,8 @@ public class Stage1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(flag == 0) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    backgroundImg.setImageResource(R.drawable.stage1_3left);
+                    flag = 5;
                 }
                 else if (flag == 1) {
                     backgroundImg.setImageResource(R.drawable.stage1_1);
@@ -144,4 +148,17 @@ public class Stage1 extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        if(System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(),"한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+        }
+    }
 }

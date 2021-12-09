@@ -20,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
         </activity>
         <activity android:name=".Stage1"
             android:exported="true">
+
         </activity>
     </application>
 
