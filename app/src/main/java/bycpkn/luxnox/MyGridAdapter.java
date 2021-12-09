@@ -13,9 +13,8 @@ import android.widget.ImageView;
 public class MyGridAdapter extends BaseAdapter {
     Context context;
     View dialogView;
-    ImageView ivPoster;
-    Integer[] posterID = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground};
-    Integer[] posterTitle = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground};
+    ImageView ivItem;
+    Integer[] itemID = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground};
 
     public MyGridAdapter(Context c) {
         context = c;
@@ -23,7 +22,7 @@ public class MyGridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return posterID.length;
+        return itemID.length;
     }
 
     @Override
@@ -40,11 +39,11 @@ public class MyGridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ImageView imageView = new ImageView(context);
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(400,650));
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(200,200));
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setPadding(5, 5, 10, 10);
 
-        imageView.setImageResource(posterID[position]);
+        imageView.setImageResource(itemID[position]);
 
         final int pos = position;
 
@@ -53,10 +52,10 @@ public class MyGridAdapter extends BaseAdapter {
             public void onClick(View view) {
                 dialogView = (View) View.inflate(context, R.layout.dialog, null);
                 AlertDialog.Builder dig = new AlertDialog.Builder(context);
-                ivPoster = (ImageView) dialogView.findViewById(R.id.imageViewForPoster);
-                ivPoster.setImageResource(posterID[pos]);
-                dig.setTitle(posterTitle[pos]);
-                dig.setIcon(posterID[pos]);
+                ivItem = (ImageView) dialogView.findViewById(R.id.imageViewForPoster);
+                ivItem.setImageResource(itemID[pos]);
+                dig.setTitle("아이템");
+                dig.setIcon(itemID[pos]);
                 dig.setView(dialogView);
                 dig.setNegativeButton("닫기", null);
                 dig.show();

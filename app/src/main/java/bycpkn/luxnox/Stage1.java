@@ -3,6 +3,8 @@ package bycpkn.luxnox;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -41,6 +43,11 @@ public class Stage1 extends AppCompatActivity {
         right = findViewById(R.id.arrow_right);
         backgroundImg = findViewById(R.id.imgbg);
         setting = findViewById(R.id.setting);
+
+        // 이미지 그리드뷰
+        final GridView itemList = (GridView) findViewById(R.id.grid_img);
+        MyGridAdapter gridAdapter = new MyGridAdapter(this);
+        itemList.setAdapter(gridAdapter);
 
         // 방향 버튼 제어
         // 왼쪽

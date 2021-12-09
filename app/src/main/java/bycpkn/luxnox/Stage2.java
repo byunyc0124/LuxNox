@@ -3,6 +3,7 @@ package bycpkn.luxnox;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -14,6 +15,8 @@ public class Stage2 extends AppCompatActivity {
     ImageView right;
     ImageView backgroundImg;
     ImageView setting;
+
+    GridView itemList;
 
     /*
         스테이지1 배경 플래그
@@ -37,6 +40,7 @@ public class Stage2 extends AppCompatActivity {
         right = findViewById(R.id.arrow_right);
         backgroundImg = findViewById(R.id.imgbg);
         setting = findViewById(R.id.setting);
+        itemList = findViewById(R.id.grid_img);
 
         // 방향 버튼 제어
         // 왼쪽
