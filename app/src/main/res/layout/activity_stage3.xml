@@ -13,21 +13,41 @@
         android:orientation="horizontal"
         android:gravity="center">
 
+        <ImageView
+            android:id="@+id/hint"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/lightbulb"
+            android:clickable="true"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ripple"/>
+
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/camera"
+            android:clickable="true"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ripple"/>
+
         <GridView
             android:id="@+id/grid_img"
-            android:layout_width="300dp"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:numColumns="4"
             android:background="@drawable/ripple"/>
 
         <ImageView
             android:id="@+id/setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/setting"
+            android:layout_gravity="center"
             android:clickable="true"
-            android:layout_margin="20dp"
+            android:layout_margin="5dp"
             android:background="@drawable/ripple"/>
     </LinearLayout>
 

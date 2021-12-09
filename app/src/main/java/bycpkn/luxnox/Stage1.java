@@ -1,15 +1,28 @@
 package bycpkn.luxnox;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 public class Stage1 extends AppCompatActivity {
@@ -18,6 +31,8 @@ public class Stage1 extends AppCompatActivity {
     ImageView right;
     ImageView backgroundImg;
     ImageView setting;
+    ImageView camera;
+    FrameLayout frame;
 
     /*
         스테이지1 배경 플래그
@@ -31,6 +46,7 @@ public class Stage1 extends AppCompatActivity {
         7 : stage1_5
      */
     int flag = 0;
+    private static final String CAPTURE_PATH = "/CAPTURE_TEST"; // 캡쳐 위치
 
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
     @Override
@@ -43,11 +59,57 @@ public class Stage1 extends AppCompatActivity {
         right = findViewById(R.id.arrow_right);
         backgroundImg = findViewById(R.id.imgbg);
         setting = findViewById(R.id.setting);
+        camera = findViewById(R.id.camera);
+        frame = findViewById(R.id.fragment_container);
 
         // 이미지 그리드뷰
         final GridView itemList = (GridView) findViewById(R.id.grid_img);
         MyGridAdapter gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
+
+        // 스크린샷
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String folder = "Test_Directory"; // 폴더 이름
+                try {
+                    // 현재 날짜로 파일을 저장하기
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+                    // 년월일시분초
+                    Date currentTime_1 = new Date();
+                    String dateString = formatter.format(currentTime_1);
+                    File sdCardPath = Environment.getExternalStorageDirectory();
+                    File dirs = new File(Environment.getExternalStorageDirectory(), folder);
+
+                    if (!dirs.exists()) { // 원하는 경로에 폴더가 있는지 확인
+                        dirs.mkdirs(); // Test 폴더 생성
+                        Log.d("CAMERA_TEST", "Directory Created");
+                    }
+                    frame.buildDrawingCache();
+                    Bitmap captureView = frame.getDrawingCache();
+                    FileOutputStream fos;
+                    String save;
+
+                    try {
+                        save = sdCardPath.getPath() + "/" + folder + "/" + dateString + ".jpg";
+                        // 저장 경로
+                        fos = new FileOutputStream(save);
+                        captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos); // 캡쳐
+                        // 미디어 스캐너를 통해 모든 미디어 리스트를 갱신시킨다.
+                        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                                Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getApplicationContext(), dateString + ".jpg 저장",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    Log.e("Screen", "" + e.toString());
+                }
+            }
+        });
 
         // 방향 버튼 제어
         // 왼쪽
