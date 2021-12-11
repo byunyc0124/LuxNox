@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,8 @@ public class PrologueActivity extends AppCompatActivity {
     ImageView backgroundIV;
     ImageView conversationIV;
     TextView conversationTV;
+
+    Animation fadeInAnim;
 
     int[] backgroundImage = { R.drawable.pro_day, R.drawable.pro_window_day,
     R.drawable.pro_fade, R.drawable.pro_night, R.drawable.pro_window_night};
@@ -28,6 +32,8 @@ public class PrologueActivity extends AppCompatActivity {
         backgroundIV = findViewById(R.id.pro_imageView1);    // 변경될 백그라운드 이미지
         conversationIV = findViewById(R.id.pro_imageView2); // 터치할 수 있는 대화창 이미지
         conversationTV = findViewById(R.id.pro_textView2);  // 변경될 대화창 텍스트
+
+        fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fadein);
 
         backgroundIV.setImageResource(R.drawable.pro_day);
 
@@ -50,6 +56,7 @@ public class PrologueActivity extends AppCompatActivity {
                     conversationTV.setText(". . .");
                     break;
                 case 3:
+                    backgroundIV.startAnimation(fadeInAnim);
                     backgroundIV.setImageResource(backgroundImage[i]);
                     conversationTV.setText("어? 뭐지? 잠들었나..");
                     break;
@@ -61,6 +68,7 @@ public class PrologueActivity extends AppCompatActivity {
                     Intent intent = new Intent(PrologueActivity.this, Stage1.class);
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     finish();
                     break;
             }
