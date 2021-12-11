@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/pro_fade" />
+            app:srcCompat="@drawable/epil_desk" />
 
         <ImageView
             android:id="@+id/epil_imageView2"
@@ -29,6 +29,15 @@
             android:scaleType="fitXY"
             android:clickable="true"
             app:srcCompat="@drawable/textview_background" />
+
+        <ImageView
+            android:id="@+id/epil_imageView3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="720dp"
+            android:layout_marginLeft="30dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/eyes" />
 
         <TextView
             android:id="@+id/epil_textView1"
