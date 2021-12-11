@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LuxNox">
         <activity
-            android:name=".SplashActivity"
+            android:name=".EpilogueActivity"
             android:exported="true" >
         </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".PrologueActivity"
             android:exported="true" />
@@ -31,9 +34,9 @@
         <activity
             android:name=".Stage2"
             android:exported="true" />
-
-        <activity android:name=".SettingActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".SettingActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -36,7 +36,8 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:background="@drawable/button"
-            android:text="START" />
+            android:text="START"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/continueButton"
@@ -44,7 +45,8 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:background="@drawable/button"
-            android:text="CONTINUE" />
+            android:text="CONTINUE"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
