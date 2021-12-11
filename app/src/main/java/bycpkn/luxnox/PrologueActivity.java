@@ -22,6 +22,9 @@ public class PrologueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prologue);
 
+        Intent intent = new Intent(PrologueActivity.this, SplashActivity.class);
+        startActivity(intent);
+
         backgroundIV = findViewById(R.id.pro_imageView1);    // 변경될 백그라운드 이미지
         conversationIV = findViewById(R.id.pro_imageView2); // 터치할 수 있는 대화창 이미지
         conversationTV = findViewById(R.id.pro_textView2);  // 변경될 대화창 텍스트

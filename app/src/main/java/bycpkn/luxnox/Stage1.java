@@ -54,6 +54,9 @@ public class Stage1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stage1);
 
+        Intent intent = new Intent(Stage1.this, SplashActivity.class);
+        startActivity(intent);
+
         left = findViewById(R.id.arrow_left);
         straight = findViewById(R.id.arrow_straight);
         right = findViewById(R.id.arrow_right);
