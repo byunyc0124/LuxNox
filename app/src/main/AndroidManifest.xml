@@ -31,6 +31,9 @@
         <activity
             android:name=".Stage2"
             android:exported="true" />
+
+        <activity android:name=".SettingActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
