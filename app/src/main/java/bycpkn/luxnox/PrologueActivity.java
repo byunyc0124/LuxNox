@@ -26,7 +26,7 @@ public class PrologueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prologue);
 
-        Intent intent = new Intent(PrologueActivity.this, SplashActivity.class);
+        Intent intent = new Intent(PrologueActivity.this, LoadingActivity.class);
         startActivity(intent);
 
         backgroundIV = findViewById(R.id.pro_imageView1);    // 변경될 백그라운드 이미지
