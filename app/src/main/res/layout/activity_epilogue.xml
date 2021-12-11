@@ -60,5 +60,15 @@
             android:text=". . ."
             android:textColor="@color/white"/>
 
+
+        <TextView
+            android:id="@+id/epil_textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="740dp"
+            android:layout_marginLeft="270dp"
+            android:text="To Be Continued.."
+            android:textColor="@color/white"/>
+
     </FrameLayout>
 </LinearLayout>

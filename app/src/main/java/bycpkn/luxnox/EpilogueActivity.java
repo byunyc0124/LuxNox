@@ -20,8 +20,9 @@ public class EpilogueActivity extends AppCompatActivity {
     TextView conversationEpilTV;
     TextView conversationIdTV;
     ImageView eyesIV;
+    TextView continueTV;
 
-    Animation fadeInAnim, fadeOutAnim;
+    Animation fadeInAnim, growAnim;
 
     int[] backgroundImage = { R.drawable.pro_fade, R.drawable.epil_window,
             R.drawable.epil_desk }; // 눈 깜빡이는 거 나중에 추가
@@ -37,15 +38,17 @@ public class EpilogueActivity extends AppCompatActivity {
         backgroundEpilIV = findViewById(R.id.epil_imageView1);    // 변경될 백그라운드 이미지
         conversationEpilIV = findViewById(R.id.epil_imageView2);  // 터치할 수 있는 대화창 이미지
         conversationEpilTV = findViewById(R.id.epil_textView2);   // 변경될 대화창 텍스트
-        conversationIdTV = findViewById(R.id.epil_textView1);    // 교수님 텍스트
+        conversationIdTV = findViewById(R.id.epil_textView1);     // 교수님 텍스트
         eyesIV = findViewById(R.id.epil_imageView3);              // 깜빡이는 눈
+        continueTV = findViewById(R.id.epil_textView3);           // to be continued
 
         fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        fadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fadeout);
+        growAnim = AnimationUtils.loadAnimation(this, R.anim.grow);
 
         backgroundEpilIV.setImageResource(R.drawable.pro_fade);
 
         eyesIV.setVisibility(View.INVISIBLE);
+        continueTV.setVisibility(View.INVISIBLE);
 
         conversationEpilIV.setOnClickListener(new ChangeEpilBackground());
     }
@@ -74,11 +77,19 @@ public class EpilogueActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(EpilogueActivity.this, MainActivity.class);
-                            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                            finish();
+                            backgroundEpilIV.startAnimation(growAnim);
+                            continueTV.startAnimation(fadeInAnim);
+                            continueTV.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(EpilogueActivity.this, MainActivity.class);
+                                    intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, 2500);
                         }
                     }, 3000);
                     break;
