@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         iv = findViewById(R.id.splash_IV);
-        Glide.with(this).load(R.drawable.splash).into(iv);
+        Glide.with(this).load(R.drawable.splashlogo).into(iv);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
