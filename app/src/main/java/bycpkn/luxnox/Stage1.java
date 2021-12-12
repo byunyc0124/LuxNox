@@ -3,6 +3,7 @@ package bycpkn.luxnox;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -58,6 +59,9 @@ public class Stage1 extends AppCompatActivity {
     private static final String CAPTURE_PATH = "/CAPTURE_TEST"; // 캡쳐 위치
 
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
+
+    int bookTouchCnt = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +93,15 @@ public class Stage1 extends AppCompatActivity {
         shakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
             @Override
             public void onShake(int count) {
-                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(500);
+                if(bookTouchCnt==1){
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(500);
+                    stationIV.setVisibility(View.VISIBLE);
+                    stationIV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {showSt1ClueDialog(6);  }
+                    });
+                }
             }
         });
 
@@ -425,6 +436,13 @@ public class Stage1 extends AppCompatActivity {
         else if(i==3){
             posterIV.setImageResource(R.drawable.st1_book3);
             dialog.show();
+            bookTouchCnt = 1;
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    bookTouchCnt = 0;
+                }
+            });
         }
         else if(i==4){
             posterIV.setImageResource(R.drawable.st1_book4);
@@ -434,7 +452,12 @@ public class Stage1 extends AppCompatActivity {
             posterIV.setImageResource(R.drawable.st1_book5);
             dialog.show();
         }
+        else if(i==6){
+            posterIV.setImageResource(R.drawable.st1_station);
+            dialog.show();
+        }
     }
+
 
 
 
