@@ -90,10 +90,18 @@ public class Stage3 extends AppCompatActivity {
 
     int videoPlayCnt = 0;
 
-    int clue1 = 0;
-    int clue2 = 0;
-    int clue3 = 0;
-    int clue4 = 0;
+    int clue1=0;
+    int clue2=0;
+    int clue3=0;
+    int clue4=0;
+    int clue5=0;
+    int clue6=0;
+    int clue7=0;
+    int clue8=0;
+    int clue9=0;
+    int clue10=0;
+    int clue11=0;
+    int clue12=0;
 
     public Stage3() {
     }
@@ -287,9 +295,9 @@ public class Stage3 extends AppCompatActivity {
                 canvas.drawBitmap(opendoor, 550, 800, null);
                 editor.putInt("LuxNox", 4);
                 editor.apply();
-                setContentView(R.layout.activity_loading);
                 Intent fin = new Intent(Stage3.this, EpilogueActivity.class);
                 startActivity(fin);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
             invalidate();
         }
@@ -450,20 +458,6 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 iv1.setImageResource(R.drawable.st3_button);
-            }
-        });
-        ImageView iv2 = (ImageView) dialog.findViewById(R.id.st3_iv1_2);
-        iv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv2.setImageResource(R.drawable.st3_button);
-            }
-        });
-        ImageView iv3 = (ImageView) dialog.findViewById(R.id.st3_iv1_3);
-        iv3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv3.setImageResource(R.drawable.st3_button);
                 clue1 = 1;
                 dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -473,18 +467,11 @@ public class Stage3 extends AppCompatActivity {
                 });
             }
         });
-        ImageView iv4 = (ImageView) dialog.findViewById(R.id.st3_iv1_4);
-        iv4.setOnClickListener(new View.OnClickListener() {
+        ImageView iv2 = (ImageView) dialog.findViewById(R.id.st3_iv1_2);
+        iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv4.setImageResource(R.drawable.st3_button);
-            }
-        });
-        ImageView iv5 = (ImageView) dialog.findViewById(R.id.st3_iv2_1);
-        iv5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv5.setImageResource(R.drawable.st3_button);
+                iv2.setImageResource(R.drawable.st3_button);
                 clue2 = 1;
                 dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -494,25 +481,11 @@ public class Stage3 extends AppCompatActivity {
                 });
             }
         });
-        ImageView iv6 = (ImageView) dialog.findViewById(R.id.st3_iv2_2);
-        iv6.setOnClickListener(new View.OnClickListener() {
+        ImageView iv3 = (ImageView) dialog.findViewById(R.id.st3_iv1_3);
+        iv3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv6.setImageResource(R.drawable.st3_button);
-            }
-        });
-        ImageView iv7 = (ImageView) dialog.findViewById(R.id.st3_iv2_3);
-        iv7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv7.setImageResource(R.drawable.st3_button);
-            }
-        });
-        ImageView iv8 = (ImageView) dialog.findViewById(R.id.st3_iv2_4);
-        iv8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv8.setImageResource(R.drawable.st3_button);
+                iv3.setImageResource(R.drawable.st3_button);
                 clue3 = 1;
                 dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -522,11 +495,88 @@ public class Stage3 extends AppCompatActivity {
                 });
             }
         });
+        ImageView iv4 = (ImageView) dialog.findViewById(R.id.st3_iv1_4);
+        iv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv4.setImageResource(R.drawable.st3_button);
+                clue4 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue4 = 0;
+                    }
+                });
+            }
+        });
+        ImageView iv5 = (ImageView) dialog.findViewById(R.id.st3_iv2_1);
+        iv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv5.setImageResource(R.drawable.st3_button);
+                clue5 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue5 = 0;
+                    }
+                });
+            }
+        });
+        ImageView iv6 = (ImageView) dialog.findViewById(R.id.st3_iv2_2);
+        iv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv6.setImageResource(R.drawable.st3_button);
+                clue6 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue6 = 0;
+                    }
+                });
+            }
+        });
+        ImageView iv7 = (ImageView) dialog.findViewById(R.id.st3_iv2_3);
+        iv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv7.setImageResource(R.drawable.st3_button);
+                clue7 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue7 = 0;
+                    }
+                });
+            }
+        });
+        ImageView iv8 = (ImageView) dialog.findViewById(R.id.st3_iv2_4);
+        iv8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv8.setImageResource(R.drawable.st3_button);
+                clue8 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue8 = 0;
+                    }
+                });
+            }
+        });
         ImageView iv9 = (ImageView) dialog.findViewById(R.id.st3_iv3_1);
         iv9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iv9.setImageResource(R.drawable.st3_button);
+                clue9 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue9 = 0;
+                    }
+                });
             }
         });
         ImageView iv10 = (ImageView) dialog.findViewById(R.id.st3_iv3_2);
@@ -534,6 +584,13 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 iv10.setImageResource(R.drawable.st3_button);
+                clue10 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue10 = 0;
+                    }
+                });
             }
         });
         ImageView iv11 = (ImageView) dialog.findViewById(R.id.st3_iv3_3);
@@ -541,6 +598,13 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 iv11.setImageResource(R.drawable.st3_button);
+                clue11 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue11 = 0;
+                    }
+                });
             }
         });
         ImageView iv12 = (ImageView) dialog.findViewById(R.id.st3_iv3_4);
@@ -548,11 +612,11 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 iv12.setImageResource(R.drawable.st3_button);
-                clue4 = 1;
+                clue12 = 1;
                 dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        clue4 = 0;
+                        clue12 = 0;
                     }
                 });
             }
@@ -597,7 +661,9 @@ public class Stage3 extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(clue1==1&&clue2==1&&clue3==1&clue4==1){
+                    if(clue3==1&&clue5==1&&clue8==1&&clue12==1
+                            &&clue1==0&&clue2==0&&clue4==0&&clue6==0
+                            &&clue7==0&&clue9==0&&clue10==0&&clue11==0){
                         keyIV.setVisibility(View.VISIBLE);
                         keyIV.setOnClickListener(new View.OnClickListener() {
                             @Override
