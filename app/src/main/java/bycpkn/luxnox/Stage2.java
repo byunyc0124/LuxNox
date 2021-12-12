@@ -231,7 +231,9 @@ public class Stage2 extends AppCompatActivity {
                     flag = 8;
                 }
                 else if (flag == 8) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Stage2.this, Stage3.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }
                 flagToSt2Clue();
             }
