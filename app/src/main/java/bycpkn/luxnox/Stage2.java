@@ -78,6 +78,7 @@ public class Stage2 extends AppCompatActivity {
         8 : stage2_6
     */
     int flag = 0;
+    int c1 =0, c2=0, c3=0, c4=0; // 단서 플래그
 
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
     @Override
@@ -148,25 +149,29 @@ public class Stage2 extends AppCompatActivity {
         blueIV = findViewById(R.id.st2_blue);
         colorsIV = findViewById(R.id.st2_colors);
 
+        if(c1 == 0 && c2 == 0) {
+            redIV.setVisibility(View.VISIBLE);
+            redIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(0);
+                    gridAdapter.changeImage(0, R.drawable.st2_red);
+                    redIV.setVisibility(View.INVISIBLE);
+                    c1 = 1;
+                }
+            });
+            greenIV.setVisibility(View.VISIBLE);
+            greenIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(1);
+                    gridAdapter.changeImage(1, R.drawable.st2_green);
+                    greenIV.setVisibility(View.INVISIBLE);
+                    c2 = 1;
+                }
+            });
+        }
 
-        redIV.setVisibility(View.VISIBLE);
-        redIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSt2ClueDialog(0);
-                gridAdapter.changeImage(0, R.drawable.st2_red);
-                redIV.setVisibility(View.INVISIBLE);
-            }
-        });
-        greenIV.setVisibility(View.VISIBLE);
-        greenIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSt2ClueDialog(1);
-                gridAdapter.changeImage(1, R.drawable.st2_green);
-                greenIV.setVisibility(View.INVISIBLE);
-            }
-        });
 
         // 방향 버튼 제어
         // 왼쪽
@@ -462,30 +467,12 @@ public class Stage2 extends AppCompatActivity {
     */
     private void flagToSt2Clue(){
         if (flag == 0){
-            redIV.setVisibility(View.VISIBLE);
-            redIV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showSt2ClueDialog(0);
-                    gridAdapter.changeImage(0, R.drawable.st2_red);
-                    redIV.setVisibility(View.INVISIBLE);
-                }
-            });
-            greenIV.setVisibility(View.VISIBLE);
-            greenIV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showSt2ClueDialog(1);
-                    gridAdapter.changeImage(1, R.drawable.st2_green);
-                    greenIV.setVisibility(View.INVISIBLE);
-                }
-            });
             blueIV.setVisibility(View.INVISIBLE);
             colorsIV.setVisibility(View.INVISIBLE);
             evIV.setVisibility(View.INVISIBLE);
             txtInMsg.setVisibility(View.INVISIBLE);
         }
-        else if(flag == 1){
+        else if(flag == 1 && c3 == 0 && c4 == 0){
             blueIV.setVisibility(View.VISIBLE);
             blueIV.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -493,6 +480,7 @@ public class Stage2 extends AppCompatActivity {
                     showSt2ClueDialog(2);
                     gridAdapter.changeImage(2, R.drawable.st2_blue);
                     blueIV.setVisibility(View.INVISIBLE);
+                    c3 = 1;
                 }
             });
             colorsIV.setVisibility(View.VISIBLE);
@@ -502,6 +490,7 @@ public class Stage2 extends AppCompatActivity {
                     showSt2ClueDialog(3);
                     gridAdapter.changeImage(3, R.drawable.st2_colors);
                     colorsIV.setVisibility(View.INVISIBLE);
+                    c4 = 1;
                 }
             });
             redIV.setVisibility(View.INVISIBLE);
