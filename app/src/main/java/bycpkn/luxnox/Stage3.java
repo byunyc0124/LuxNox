@@ -2,6 +2,8 @@ package bycpkn.luxnox;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
@@ -50,6 +53,8 @@ public class Stage3 extends AppCompatActivity {
     int flag = 0;
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
 
+    int videoPlayCnt = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,11 @@ public class Stage3 extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(Stage3.this, "You just Captured a Screenshot", Toast.LENGTH_SHORT).show();
                 takeScreenshot();
+                if(videoPlayCnt == 1){
+                    // 단서 st3_vendingmachine 획득
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(500);
+                }
             }
         });
 
@@ -261,6 +271,19 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.start();
+                videoPlayCnt = 1;
+            }
+        });
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                videoPlayCnt = 0;
             }
         });
 

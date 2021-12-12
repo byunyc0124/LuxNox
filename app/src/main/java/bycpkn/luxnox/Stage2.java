@@ -1,6 +1,7 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
@@ -135,7 +137,19 @@ public class Stage2 extends AppCompatActivity {
 
 
         redIV.setVisibility(View.VISIBLE);
+        redIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSt2ClueDialog(0);
+            }
+        });
         greenIV.setVisibility(View.VISIBLE);
+        greenIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSt2ClueDialog(1);
+            }
+        });
 
         // 방향 버튼 제어
         // 왼쪽
@@ -428,26 +442,88 @@ public class Stage2 extends AppCompatActivity {
     private void flagToSt2Clue(){
         if (flag == 0){
             redIV.setVisibility(View.VISIBLE);
+            redIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(0);
+                }
+            });
             greenIV.setVisibility(View.VISIBLE);
+            greenIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(1);
+                }
+            });
+
             blueIV.setVisibility(View.INVISIBLE);
             colorsIV.setVisibility(View.INVISIBLE);
+            evIV.setVisibility(View.INVISIBLE);
+            txtInMsg.setVisibility(View.INVISIBLE);
         }
         else if(flag == 1){
+            blueIV.setVisibility(View.VISIBLE);
+            blueIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(2);
+                }
+            });
+            colorsIV.setVisibility(View.VISIBLE);
+            colorsIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt2ClueDialog(3);
+                }
+            });
+
             redIV.setVisibility(View.INVISIBLE);
             greenIV.setVisibility(View.INVISIBLE);
-            blueIV.setVisibility(View.VISIBLE);
-            colorsIV.setVisibility(View.VISIBLE);
+            evIV.setVisibility(View.INVISIBLE);
+            txtInMsg.setVisibility(View.INVISIBLE);
         }
 
         else if(flag == 2) {
             evIV.setVisibility(View.VISIBLE);
-
             txtInMsg.setVisibility(View.VISIBLE);
-        }
-        else {
+
+            redIV.setVisibility(View.INVISIBLE);
+            greenIV.setVisibility(View.INVISIBLE);
             blueIV.setVisibility(View.INVISIBLE);
             colorsIV.setVisibility(View.INVISIBLE);
         }
+        else {
+            evIV.setVisibility(View.INVISIBLE);
+            txtInMsg.setVisibility(View.INVISIBLE);
+            redIV.setVisibility(View.INVISIBLE);
+            greenIV.setVisibility(View.INVISIBLE);
+            blueIV.setVisibility(View.INVISIBLE);
+            colorsIV.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void showSt2ClueDialog(int i){
+        Dialog dialog = new Dialog(Stage2.this);
+        dialog.setContentView(R.layout.st2dialog);
+        ImageView posterIV = (ImageView) dialog.findViewById(R.id.imageViewForSt2Poster);
+
+        if (i==0) {
+            posterIV.setImageResource(R.drawable.st2_red);
+            dialog.show();
+        }
+        else if(i==1){
+            posterIV.setImageResource(R.drawable.st2_green);
+            dialog.show();
+        }
+        else if(i==2){
+            posterIV.setImageResource(R.drawable.st2_blue);
+            dialog.show();
+        }
+        else if(i==3){
+            posterIV.setImageResource(R.drawable.st2_colors);
+            dialog.show();
+        }
+
     }
 
     // 권한 요청

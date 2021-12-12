@@ -2,12 +2,17 @@ package bycpkn.luxnox;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -36,6 +41,9 @@ public class Stage1 extends AppCompatActivity {
     ImageView book1IV, book2IV, book3IV, book4IV, book5IV;
     ImageView stationIV, cofferIV, keyIV;
 
+    SensorManager sensorManager;
+    Sensor accelerometer;
+    ShakeDetector shakeDetector;
     GridView itemList;
     MyGridAdapter gridAdapter;
 
@@ -54,6 +62,9 @@ public class Stage1 extends AppCompatActivity {
     private static final String CAPTURE_PATH = "/CAPTURE_TEST"; // 캡쳐 위치
 
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
+
+    int bookTouchCnt = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +89,24 @@ public class Stage1 extends AppCompatActivity {
         stationIV = findViewById(R.id.st1_station);
         cofferIV = findViewById(R.id.st1_coffer);
         keyIV = findViewById(R.id.st1_key);
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        shakeDetector = new ShakeDetector();
+        shakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake(int count) {
+                if(bookTouchCnt==1){
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(500);
+                    stationIV.setVisibility(View.VISIBLE);
+                    stationIV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {showSt1ClueDialog(6);  }
+                    });
+                }
+            }
+        });
 
         // 이미지 그리드뷰
         itemList = findViewById(R.id.grid_img);
@@ -220,6 +249,20 @@ public class Stage1 extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        sensorManager.registerListener(shakeDetector, accelerometer,    SensorManager.SENSOR_DELAY_UI);
+    }
+    // background 상황에서도 흔들림을 감지하고 적용할 필요는 없다
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        sensorManager.unregisterListener(shakeDetector);
+        super.onPause();
+    }
+
     // 스크린샷
     private void takeScreenshot() {
         Date now = new Date();
@@ -319,9 +362,7 @@ public class Stage1 extends AppCompatActivity {
             book5IV.setVisibility(View.VISIBLE);
             book5IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    showSt1ClueDialog(5);
-                }
+                public void onClick(View v) {showSt1ClueDialog(5); }
             });
             cofferIV.setVisibility(View.INVISIBLE);
             //stationIV.setVisibility(View.VISIBLE);
@@ -415,6 +456,13 @@ public class Stage1 extends AppCompatActivity {
         else if(i==3){
             posterIV.setImageResource(R.drawable.st1_book3);
             dialog.show();
+            bookTouchCnt = 1;
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    bookTouchCnt = 0;
+                }
+            });
         }
         else if(i==4){
             posterIV.setImageResource(R.drawable.st1_book4);
@@ -422,6 +470,10 @@ public class Stage1 extends AppCompatActivity {
         }
         else if(i==5){
             posterIV.setImageResource(R.drawable.st1_book5);
+            dialog.show();
+        }
+        else if(i==6){
+            posterIV.setImageResource(R.drawable.st1_station);
             dialog.show();
         }
     }
