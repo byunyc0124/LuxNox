@@ -40,6 +40,9 @@ public class Stage1 extends AppCompatActivity {
     ImageView camera;
     FrameLayout frame;
 
+    ImageView book1IV, book2IV, book3IV, book4IV, book5IV;
+    ImageView stationIV, cofferIV, keyIV;
+
     /*
         스테이지1 배경 플래그
         0 : stage1_1
@@ -70,6 +73,15 @@ public class Stage1 extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         camera = findViewById(R.id.camera);
         frame = findViewById(R.id.fragment_container);
+
+        book1IV = findViewById(R.id.st1_book1);
+        book2IV = findViewById(R.id.st1_book2);
+        book3IV = findViewById(R.id.st1_book3);
+        book4IV = findViewById(R.id.st1_book4);
+        book5IV = findViewById(R.id.st1_book5);
+        stationIV = findViewById(R.id.st1_station);
+        cofferIV = findViewById(R.id.st1_coffer);
+        keyIV = findViewById(R.id.st1_key);
 
         // 이미지 그리드뷰
         final GridView itemList = (GridView) findViewById(R.id.grid_img);
