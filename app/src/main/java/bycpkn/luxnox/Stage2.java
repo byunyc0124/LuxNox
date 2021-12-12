@@ -46,10 +46,12 @@ public class Stage2 extends AppCompatActivity {
     ImageView setting;
     ImageView camera;
 
-    GridView itemList;
-
     ImageView redIV, greenIV, blueIV, colorsIV;
     ImageView evIV;
+
+    GridView itemList;
+    MyGridAdapter gridAdapter;
+
     TextView txtInMsg; // 음성 인식 출력 텍스트뷰
     SpeechRecognizer mRecognizer;
 
@@ -87,8 +89,8 @@ public class Stage2 extends AppCompatActivity {
         camera = findViewById(R.id.camera);
 
         // 이미지 그리드뷰
-        final GridView itemList = (GridView) findViewById(R.id.grid_img);
-        MyGridAdapter gridAdapter = new MyGridAdapter(this);
+        itemList = findViewById(R.id.grid_img);
+        gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
 
         //음성인식
@@ -141,6 +143,7 @@ public class Stage2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showSt2ClueDialog(0);
+                gridAdapter.changeImage(0, R.drawable.st2_red);
             }
         });
         greenIV.setVisibility(View.VISIBLE);
@@ -148,6 +151,7 @@ public class Stage2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showSt2ClueDialog(1);
+                gridAdapter.changeImage(1, R.drawable.st2_green);
             }
         });
 
@@ -466,6 +470,7 @@ public class Stage2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt2ClueDialog(2);
+                    gridAdapter.changeImage(2, R.drawable.st2_blue);
                 }
             });
             colorsIV.setVisibility(View.VISIBLE);
@@ -473,6 +478,7 @@ public class Stage2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt2ClueDialog(3);
+                    gridAdapter.changeImage(3, R.drawable.st2_colors);
                 }
             });
 
