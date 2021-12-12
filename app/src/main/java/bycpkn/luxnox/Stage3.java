@@ -136,6 +136,7 @@ public class Stage3 extends AppCompatActivity {
                     // 단서 st3_vendingmachine 획득
                     Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(500);
+                    gridAdapter.changeImage(0, R.drawable.st3_vendingmachine);
                 }
             }
         });
@@ -348,7 +349,7 @@ public class Stage3 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt3ClueDialog();
-                    gridAdapter.changeImage(0, R.drawable.st3_vendingmachine);
+
                 }
             });
         }
