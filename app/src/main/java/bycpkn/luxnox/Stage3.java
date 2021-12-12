@@ -26,6 +26,7 @@ import android.os.Vibrator;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -82,6 +83,11 @@ public class Stage3 extends AppCompatActivity {
 
     int videoPlayCnt = 0;
 
+    int clue1 = 0;
+    int clue2 = 0;
+    int clue3 = 0;
+    int clue4 = 0;
+
     public Stage3() {
     }
 
@@ -112,6 +118,7 @@ public class Stage3 extends AppCompatActivity {
 
         preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         editor = preferences.edit();
+
 
         //기본 화면 사이즈를 받아와서 x축, y축 maxSize 설정
         Point size = new Point();
@@ -398,6 +405,7 @@ public class Stage3 extends AppCompatActivity {
         dialog.setContentView(R.layout.st3dialog);
         ImageView posterIV = (ImageView) dialog.findViewById(R.id.imageViewForSt3Poster);
         VideoView videoView = (VideoView) dialog.findViewById(R.id.st3_clueVV);
+        Button btn = (Button) dialog.findViewById(R.id.st3_btn);
         LinearLayout ll1 = (LinearLayout) dialog.findViewById(R.id.st3_ll1);
         LinearLayout ll2 = (LinearLayout) dialog.findViewById(R.id.st3_ll2);
         LinearLayout ll3 = (LinearLayout) dialog.findViewById(R.id.st3_ll3);
@@ -405,86 +413,115 @@ public class Stage3 extends AppCompatActivity {
         iv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv1.setBackgroundColor(Color.CYAN);
+                iv1.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv2 = (ImageView) dialog.findViewById(R.id.st3_iv1_2);
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv2.setBackgroundColor(Color.CYAN);
+                iv2.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv3 = (ImageView) dialog.findViewById(R.id.st3_iv1_3);
         iv3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv3.setBackgroundColor(Color.CYAN);
+                iv3.setImageResource(R.drawable.st3_button);
+                clue1 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue1 = 0;
+                    }
+                });
             }
         });
         ImageView iv4 = (ImageView) dialog.findViewById(R.id.st3_iv1_4);
         iv4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv4.setBackgroundColor(Color.CYAN);
+                iv4.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv5 = (ImageView) dialog.findViewById(R.id.st3_iv2_1);
         iv5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv5.setBackgroundColor(Color.CYAN);
+                iv5.setImageResource(R.drawable.st3_button);
+                clue2 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue2 = 0;
+                    }
+                });
             }
         });
         ImageView iv6 = (ImageView) dialog.findViewById(R.id.st3_iv2_2);
         iv6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv6.setBackgroundColor(Color.CYAN);
+                iv6.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv7 = (ImageView) dialog.findViewById(R.id.st3_iv2_3);
         iv7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv7.setBackgroundColor(Color.CYAN);
+                iv7.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv8 = (ImageView) dialog.findViewById(R.id.st3_iv2_4);
         iv8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv8.setBackgroundColor(Color.CYAN);
+                iv8.setImageResource(R.drawable.st3_button);
+                clue3 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue3 = 0;
+                    }
+                });
             }
         });
         ImageView iv9 = (ImageView) dialog.findViewById(R.id.st3_iv3_1);
         iv9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv9.setBackgroundColor(Color.CYAN);
+                iv9.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv10 = (ImageView) dialog.findViewById(R.id.st3_iv3_2);
         iv10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv10.setBackgroundColor(Color.CYAN);
+                iv10.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv11 = (ImageView) dialog.findViewById(R.id.st3_iv3_3);
         iv11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv11.setBackgroundColor(Color.CYAN);
+                iv11.setImageResource(R.drawable.st3_button);
             }
         });
         ImageView iv12 = (ImageView) dialog.findViewById(R.id.st3_iv3_4);
         iv12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv12.setBackgroundColor(Color.CYAN);
+                iv12.setImageResource(R.drawable.st3_button);
+                clue4 = 1;
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        clue4 = 0;
+                    }
+                });
             }
         });
+
 
         if(i==0){
             posterIV.setImageResource(R.drawable.st3_videopaper);
@@ -520,15 +557,26 @@ public class Stage3 extends AppCompatActivity {
             ll1.setVisibility(View.VISIBLE);
             ll2.setVisibility(View.VISIBLE);
             ll3.setVisibility(View.VISIBLE);
+            btn.setVisibility(View.VISIBLE);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(clue1==1&&clue2==1&&clue3==1&clue4==1){
+                        keyIV.setVisibility(View.VISIBLE);
+                        keyIV.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showSt3ClueDialog(2);
+                            }
+                        });
+                    }
+                }
+            });
         }
         else if(i==2){
             posterIV.setImageResource(R.drawable.st3_key);
             dialog.show();
         }
-    }
-
-    private void changeColor(){
-
     }
 
     // 권한 요청
