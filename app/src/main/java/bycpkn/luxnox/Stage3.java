@@ -1,16 +1,21 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +33,8 @@ public class Stage3 extends AppCompatActivity {
     ImageView backgroundImg;
     ImageView setting;
     ImageView camera;
+
+    ImageView videoPaperIV;
 
     GridView itemList;
 
@@ -58,6 +65,8 @@ public class Stage3 extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         itemList = findViewById(R.id.grid_img);
         camera = findViewById(R.id.camera);
+
+        videoPaperIV = findViewById(R.id.st3_videopaper);
 
         // 이미지 그리드뷰
         final GridView itemList = (GridView) findViewById(R.id.grid_img);
@@ -103,6 +112,7 @@ public class Stage3 extends AppCompatActivity {
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToSt3Clue();
             }
         });
 
@@ -130,6 +140,7 @@ public class Stage3 extends AppCompatActivity {
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToSt3Clue();
             }
         });
 
@@ -160,6 +171,7 @@ public class Stage3 extends AppCompatActivity {
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToSt3Clue();
             }
         });
 
@@ -210,6 +222,48 @@ public class Stage3 extends AppCompatActivity {
         Uri uri = Uri.fromFile(imageFile);
         intent.setDataAndType(uri, "image/*");
         startActivity(intent);
+    }
+
+    /*
+        스테이지3 배경 플래그
+        0 : stage3_1
+        1 : stage3_1s -> videopaper
+        2 : stage3_1right -> vending button click
+        3 : stage3_1rightright
+        4 : stage3_2
+        5 : stage3_3
+    */
+    private void flagToSt3Clue(){
+        if (flag == 1){
+            videoPaperIV.setVisibility(View.VISIBLE);
+            videoPaperIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) { showSt3ClueDialog(); }
+            });
+        }
+        else {
+            videoPaperIV.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void showSt3ClueDialog(){
+        Dialog dialog = new Dialog(Stage3.this);
+        dialog.setContentView(R.layout.st3dialog);
+        ImageView posterIV = (ImageView) dialog.findViewById(R.id.imageViewForSt3Poster);
+        VideoView videoView = (VideoView) dialog.findViewById(R.id.st3_clueVV);
+        posterIV.setImageResource(R.drawable.st3_videopaper);
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/raw/clue");
+        videoView.setVideoURI(uri);
+        videoView.setMediaController(new MediaController(Stage3.this));
+        dialog.show();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
     }
 
     // 권한 요청

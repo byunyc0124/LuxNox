@@ -3,6 +3,8 @@ package bycpkn.luxnox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,12 +29,14 @@ public class EpilogueActivity extends AppCompatActivity {
     int[] backgroundImage = { R.drawable.pro_fade, R.drawable.epil_window,
             R.drawable.epil_desk }; // 눈 깜빡이는 거 나중에 추가
 
+    SoundPool soundPool;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_epilogue);
 
-        Intent intent = new Intent(EpilogueActivity.this, SplashActivity.class);
+        Intent intent = new Intent(EpilogueActivity.this, LoadingActivity.class);
         startActivity(intent);
 
         backgroundEpilIV = findViewById(R.id.epil_imageView1);    // 변경될 백그라운드 이미지
@@ -44,6 +48,15 @@ public class EpilogueActivity extends AppCompatActivity {
 
         fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fadein);
         growAnim = AnimationUtils.loadAnimation(this, R.anim.grow);
+
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        int sound_beep_alert = soundPool.load(this, R.raw.bell, 1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                soundPool.play(sound_beep_alert, 1f, 1f, 0, 0, 1f);
+            }
+        });
 
         backgroundEpilIV.setImageResource(R.drawable.pro_fade);
 

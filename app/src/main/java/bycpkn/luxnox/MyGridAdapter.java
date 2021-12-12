@@ -2,12 +2,9 @@ package bycpkn.luxnox;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 public class MyGridAdapter extends BaseAdapter {
@@ -50,7 +47,7 @@ public class MyGridAdapter extends BaseAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogView = (View) View.inflate(context, R.layout.dialog, null);
+                dialogView = (View) View.inflate(context, R.layout.st1dialog, null);
                 AlertDialog.Builder dig = new AlertDialog.Builder(context);
                 ivItem = (ImageView) dialogView.findViewById(R.id.imageViewForPoster);
                 ivItem.setImageResource(itemID[pos]);
