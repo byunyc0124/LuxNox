@@ -18,6 +18,8 @@ public class Stage2 extends AppCompatActivity {
 
     GridView itemList;
 
+    ImageView redIV, greenIV, blueIV, colorsIV;
+
     /*
         스테이지1 배경 플래그
         0 : stage2_1
@@ -44,6 +46,11 @@ public class Stage2 extends AppCompatActivity {
         backgroundImg = findViewById(R.id.imgbg);
         setting = findViewById(R.id.setting);
         itemList = findViewById(R.id.grid_img);
+
+        redIV = findViewById(R.id.st2_red);
+        greenIV = findViewById(R.id.st2_green);
+        blueIV = findViewById(R.id.st2_blue);
+        colorsIV = findViewById(R.id.st2_colors);
 
         // 방향 버튼 제어
         // 왼쪽
