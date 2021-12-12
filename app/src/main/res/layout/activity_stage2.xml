@@ -123,6 +123,28 @@
             android:src="@drawable/st2_colors"
             android:clickable="true"
             android:visibility="invisible"/>
+        <ImageView
+            android:id="@+id/st2_evbtn"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginLeft="340dp"
+            android:background="@drawable/evdownbtn"
+            android:clickable="true"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:id="@+id/txtInMsg"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#B5C7ED"
+            android:textColor="@color/purple_700"
+            android:fontFamily="@font/yanolja"
+            android:visibility="invisible"/>
     </FrameLayout>
 
 
