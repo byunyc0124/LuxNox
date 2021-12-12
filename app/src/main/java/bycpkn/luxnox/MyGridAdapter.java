@@ -60,5 +60,10 @@ public class MyGridAdapter extends BaseAdapter {
         });
         return imageView;
     }
+
+    public void changeImage(int position, int image){
+        itemID[position] = image;
+        notifyDataSetChanged();
+    }
 }
 
