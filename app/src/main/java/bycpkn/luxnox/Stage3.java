@@ -295,9 +295,9 @@ public class Stage3 extends AppCompatActivity {
                 canvas.drawBitmap(opendoor, 550, 800, null);
                 editor.putInt("LuxNox", 4);
                 editor.apply();
-                setContentView(R.layout.activity_loading);
                 Intent fin = new Intent(Stage3.this, EpilogueActivity.class);
                 startActivity(fin);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
             invalidate();
         }
