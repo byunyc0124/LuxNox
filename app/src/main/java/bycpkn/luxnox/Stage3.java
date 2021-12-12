@@ -7,11 +7,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Point;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.location.GnssAntennaInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
@@ -41,6 +50,15 @@ public class Stage3 extends AppCompatActivity {
 
     GridView itemList;
 
+    // 이미지의 위치를 나타내 줄 변수
+    private SensorManager sensorManager;
+    private SensorEventListener sensorEventListener;
+    private Sensor sensor;
+    private float xPos, xAccel, xVel = 0.0f;
+    private float yPos, yAccel, yVel = 0.0f;
+    private float xMax, yMax;
+    private Bitmap key;
+
     /*
         스테이지3 배경 플래그
         0 : stage3_1
@@ -54,6 +72,9 @@ public class Stage3 extends AppCompatActivity {
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
 
     int videoPlayCnt = 0;
+
+    public Stage3() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +98,30 @@ public class Stage3 extends AppCompatActivity {
         final GridView itemList = (GridView) findViewById(R.id.grid_img);
         MyGridAdapter gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
+
+        //기본 화면 사이즈를 받아와서 x축, y축 maxSize 설정
+        Point size = new Point();
+        Display display = getWindowManager().getDefaultDisplay();
+        display.getSize(size);
+        xMax = (float) size.x - 100;
+        yMax = (float) size.y - 100;
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                    xAccel = event.values[0];
+                    yAccel = -event.values[1];
+                    updateKey();
+                }
+            }
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
 
         checkDangerousPermission();
         // 스크린샷
@@ -193,7 +238,59 @@ public class Stage3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    private class AccelView extends View {
+        public AccelView(Context context) {
+            super(context);
+            Bitmap keySrc = BitmapFactory.decodeResource(getResources(), R.drawable.st3_key);
+            final int dstWidth = 100;
+            final int dstHeight = 200;
+            key = Bitmap.createScaledBitmap(keySrc, dstWidth, dstHeight, true);
+        }
+        @Override
+        protected void onDraw(Canvas canvas) {
+            canvas.drawBitmap(key, xPos, yPos, null);
+            invalidate();
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorEventListener);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    private void updateKey(){
+        float frameTime = 0.4f;
+        xVel += (xAccel * frameTime);
+        yVel += (yAccel * frameTime);
+
+        float xS = (xVel / 2) * frameTime;		//x축 이동 속도
+        float yS = (yVel / 2) * frameTime;		//y축 이동 속도
+
+        xPos -= xS;								//x축 위치
+        yPos -= yS;								//y축 위치
+
+        if (xPos > xMax) {
+            xPos = xMax;
+        } else if (xPos < 0) {
+            xPos = 0;
+        }
+
+        if (yPos > yMax) {
+            yPos = yMax;
+        } else if (yPos < 0) {
+            yPos = 0;
+        }
     }
 
     // 스크린샷
@@ -241,7 +338,7 @@ public class Stage3 extends AppCompatActivity {
         2 : stage3_1right -> vending button click
         3 : stage3_1rightright
         4 : stage3_2
-        5 : stage3_3
+        5 : stage3_3 -> AccelView
     */
     private void flagToSt3Clue(){
         if (flag == 1){
@@ -250,6 +347,12 @@ public class Stage3 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) { showSt3ClueDialog(); }
             });
+        }
+        else if(flag == 5){
+            videoPaperIV.setVisibility(View.INVISIBLE);
+            AccelView accelView = new AccelView(this);
+            accelView.setBackground(getDrawable(R.drawable.stage3_3));
+            setContentView(accelView);
         }
         else {
             videoPaperIV.setVisibility(View.INVISIBLE);

@@ -75,8 +75,8 @@ public class Stage2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stage2);
 
-        //Intent intent = new Intent(Stage2.this, LoadingActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(Stage2.this, LoadingActivity.class);
+        startActivity(intent);
 
         left = findViewById(R.id.arrow_left);
         straight = findViewById(R.id.arrow_straight);
@@ -396,7 +396,6 @@ public class Stage2 extends AppCompatActivity {
 
 
     //입력된 음성 메세지 확인 후 동작 처리
-
     private void FuncVoiceOrderCheck(String VoiceMsg){
         if(VoiceMsg.length()<1)
             return;
