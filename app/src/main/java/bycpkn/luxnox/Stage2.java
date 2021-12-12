@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Debug;
@@ -53,6 +54,8 @@ public class Stage2 extends AppCompatActivity {
 
     GridView itemList;
     MyGridAdapter gridAdapter;
+
+    AnimationDrawable mframeAnimation;
 
     TextView txtInMsg; // 음성 인식 출력 텍스트뷰
     SpeechRecognizer mRecognizer;
@@ -239,7 +242,9 @@ public class Stage2 extends AppCompatActivity {
                     flag = 8;
                 }
                 else if (flag == 8) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Stage2.this, Stage3.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }
                 flagToSt2Clue();
             }
@@ -421,11 +426,10 @@ public class Stage2 extends AppCompatActivity {
         if(VoiceMsg.indexOf("요이땅")>-1) {
             FuncVoiceOut("정답입니다. 문이 열립니다."); // 정답 음성 출력
             evIV.setVisibility(View.INVISIBLE);
-
-            //final AnimationDrawable drawable = (AnimationDrawable) backgroundImg.getBackground();
-            backgroundImg.setImageResource(R.drawable.openev); // 배경 이미지 전환 -> 프레임 애니메이션으로 교체하기
-            //drawable.start();
-            flag = 5;
+            backgroundImg.setImageResource(R.drawable.openev);
+            mframeAnimation = (AnimationDrawable) backgroundImg.getDrawable();
+            mframeAnimation.start();
+            flag=5;
         }
         else {
             FuncVoiceOut("정답이 아닙니다. 버튼을 눌러 다시 대답해주세요"); // 오답 음성 출력

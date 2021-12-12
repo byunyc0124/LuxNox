@@ -54,6 +54,7 @@ public class Stage3 extends AppCompatActivity {
     ImageView vendingMachineIV, keyIV;
 
     GridView itemList;
+    MyGridAdapter gridAdapter;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -105,8 +106,8 @@ public class Stage3 extends AppCompatActivity {
         keyIV = findViewById(R.id.st3_key);
 
         // 이미지 그리드뷰
-        final GridView itemList = (GridView) findViewById(R.id.grid_img);
-        MyGridAdapter gridAdapter = new MyGridAdapter(this);
+        itemList = findViewById(R.id.grid_img);
+        gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
 
         preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
@@ -147,6 +148,7 @@ public class Stage3 extends AppCompatActivity {
                     // 단서 st3_vendingmachine 획득
                     Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(500);
+                    gridAdapter.changeImage(0, R.drawable.st3_vendingmachine);
                 }
             }
         });
@@ -174,8 +176,8 @@ public class Stage3 extends AppCompatActivity {
                     flag = 2;
                 }
                 else if (flag == 4) {
-                    backgroundImg.setImageResource(R.drawable.stage3_1);
-                    flag = 0;
+                    backgroundImg.setImageResource(R.drawable.stage3_1rightright);
+                    flag = 3;
                 }
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
@@ -229,8 +231,8 @@ public class Stage3 extends AppCompatActivity {
                     flag = 3;
                 }
                 else if (flag == 3) {
-                    backgroundImg.setImageResource(R.drawable.stage3_1);
-                    flag = 0;
+                    backgroundImg.setImageResource(R.drawable.stage3_2);
+                    flag = 4;
                 }
                 else if (flag == 4) {
                     backgroundImg.setImageResource(R.drawable.stage3_1);
@@ -376,6 +378,7 @@ public class Stage3 extends AppCompatActivity {
             videoPaperIV.setVisibility(View.INVISIBLE);
         }
         else if(flag == 5){
+            videoPaperIV.setVisibility(View.INVISIBLE);
             AccelView accelView = new AccelView(this);
             accelView.setBackground(getDrawable(R.drawable.stage3_3));
             setContentView(accelView);
