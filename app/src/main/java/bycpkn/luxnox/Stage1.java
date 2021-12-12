@@ -133,6 +133,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToClue();
             }
         });
 
@@ -168,6 +169,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToClue();
             }
         });
 
@@ -204,6 +206,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                flagToClue();
             }
         });
 
@@ -253,6 +256,46 @@ public class Stage1 extends AppCompatActivity {
         Uri uri = Uri.fromFile(imageFile);
         intent.setDataAndType(uri, "image/*");
         startActivity(intent);
+    }
+
+    /*
+        스테이지1 배경 플래그
+        0 : stage1_1
+        1 : stage1_1left -> coffer, key
+        2 : stage1_2
+        3 : stage1_2left
+        4 : stage1_3
+        5 : stage1_3left -> books, station
+        6 : stage1_4
+        7 : stage1_5
+     */
+    private void flagToClue(){
+        if (flag == 1){
+            cofferIV.setVisibility(View.VISIBLE);
+            book1IV.setVisibility(View.INVISIBLE);
+            book2IV.setVisibility(View.INVISIBLE);
+            book3IV.setVisibility(View.INVISIBLE);
+            book4IV.setVisibility(View.INVISIBLE);
+            book5IV.setVisibility(View.INVISIBLE);
+            //keyIV.setVisibility(View.VISIBLE);
+        }
+        else if(flag == 5){
+            book1IV.setVisibility(View.VISIBLE);
+            book2IV.setVisibility(View.VISIBLE);
+            book3IV.setVisibility(View.VISIBLE);
+            book4IV.setVisibility(View.VISIBLE);
+            book5IV.setVisibility(View.VISIBLE);
+            cofferIV.setVisibility(View.INVISIBLE);
+            //stationIV.setVisibility(View.VISIBLE);
+        }
+        else {
+            cofferIV.setVisibility(View.INVISIBLE);
+            book1IV.setVisibility(View.INVISIBLE);
+            book2IV.setVisibility(View.INVISIBLE);
+            book3IV.setVisibility(View.INVISIBLE);
+            book4IV.setVisibility(View.INVISIBLE);
+            book5IV.setVisibility(View.INVISIBLE);
+        }
     }
 
     // 권한 요청
