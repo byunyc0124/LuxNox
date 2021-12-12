@@ -64,6 +64,7 @@ public class Stage1 extends AppCompatActivity {
     private long backKeyPressedTime = 0; // 뒤로가기 버튼 누른 시간
 
     int bookTouchCnt = 0;
+    int keyCnt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +103,9 @@ public class Stage1 extends AppCompatActivity {
                     stationIV.setVisibility(View.VISIBLE);
                     stationIV.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {showSt1ClueDialog(6);  }
+                        public void onClick(View v) {
+                            showSt1ClueDialog(6);
+                        stationIV.setVisibility(View.INVISIBLE);}
                     });
                 }
             }
@@ -192,7 +195,13 @@ public class Stage1 extends AppCompatActivity {
                     flag = 7;
                 }
                 else if (flag == 7) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    if (keyCnt == 1) {
+                        Intent intent = new Intent(Stage1.this, Stage2.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 flagToSt1Clue();
             }
@@ -429,7 +438,9 @@ public class Stage1 extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 // 단서 획득 후 문 따고 나갈 수 있게
+                                keyCnt = 1;
                                 gridAdapter.changeImage(1, R.drawable.st1_key);
+                                keyIV.setVisibility(View.INVISIBLE);
                             }
                         });
                         firstTV.setVisibility(View.INVISIBLE);
