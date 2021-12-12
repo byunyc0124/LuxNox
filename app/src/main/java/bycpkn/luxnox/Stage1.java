@@ -1,8 +1,11 @@
 package bycpkn.luxnox;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,7 +17,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -70,47 +76,13 @@ public class Stage1 extends AppCompatActivity {
         MyGridAdapter gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
 
+        checkDangerousPermission();
         // 스크린샷
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String folder = "Test_Directory"; // 폴더 이름
-                try {
-                    // 현재 날짜로 파일을 저장하기
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-                    // 년월일시분초
-                    Date currentTime_1 = new Date();
-                    String dateString = formatter.format(currentTime_1);
-                    File sdCardPath = Environment.getExternalStorageDirectory();
-                    File dirs = new File(Environment.getExternalStorageDirectory(), folder);
-
-                    if (!dirs.exists()) { // 원하는 경로에 폴더가 있는지 확인
-                        dirs.mkdirs(); // Test 폴더 생성
-                        Log.d("CAMERA_TEST", "Directory Created");
-                    }
-                    frame.buildDrawingCache();
-                    Bitmap captureView = frame.getDrawingCache();
-                    FileOutputStream fos;
-                    String save;
-
-                    try {
-                        save = sdCardPath.getPath() + "/" + folder + "/" + dateString + ".jpg";
-                        // 저장 경로
-                        fos = new FileOutputStream(save);
-                        captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos); // 캡쳐
-                        // 미디어 스캐너를 통해 모든 미디어 리스트를 갱신시킨다.
-                        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
-                                Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    Toast.makeText(getApplicationContext(), dateString + ".jpg 저장",
-                            Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    // TODO: handle exception
-                    Log.e("Screen", "" + e.toString());
-                }
+                Toast.makeText(Stage1.this, "You just Captured a Screenshot", Toast.LENGTH_SHORT).show();
+                takeScreenshot();
             }
         });
 
@@ -231,6 +203,84 @@ public class Stage1 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // 스크린샷
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace();
+        }
+    }
+
+    private void openScreenshot(File imageFile) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        Uri uri = Uri.fromFile(imageFile);
+        intent.setDataAndType(uri, "image/*");
+        startActivity(intent);
+    }
+
+    // 권한 요청
+    private void checkDangerousPermission() {
+        String[] permissions = {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, // 외부 파일 쓰기
+                Manifest.permission.READ_EXTERNAL_STORAGE // 외부 파일 읽기
+        };
+
+        int permissionCheck = PackageManager.PERMISSION_GRANTED;
+        for(int i=0; i< permissions.length; i++) {
+            permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i]);
+            if(permissionCheck == PackageManager.PERMISSION_DENIED) {
+                break;
+            }
+        }
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                Toast.makeText(this, "권한 설명 필요함", Toast.LENGTH_LONG).show();
+            }
+            else {
+                ActivityCompat.requestPermissions(this, permissions, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 1) {
+            for(int i = 0; i< permissions.length; i++) {
+                if(grantResults[i] ==PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, permissions[i] + "권한이 승인됨", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(this, permissions[i] + "권한이 승인되지 않음", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 
     @Override
