@@ -162,7 +162,6 @@ public class Stage3 extends AppCompatActivity {
 
         // 방향 버튼 제어
         // 왼쪽
-        Toast.makeText(Stage3.this, "현재 플래그 : " + flag, Toast.LENGTH_SHORT).show();
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
