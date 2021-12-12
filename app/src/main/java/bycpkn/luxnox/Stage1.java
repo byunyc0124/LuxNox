@@ -2,12 +2,16 @@ package bycpkn.luxnox;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -36,6 +40,9 @@ public class Stage1 extends AppCompatActivity {
     ImageView book1IV, book2IV, book3IV, book4IV, book5IV;
     ImageView stationIV, cofferIV, keyIV;
 
+    SensorManager sensorManager;
+    Sensor accelerometer;
+    ShakeDetector shakeDetector;
     /*
         스테이지1 배경 플래그
         0 : stage1_1
@@ -75,6 +82,17 @@ public class Stage1 extends AppCompatActivity {
         stationIV = findViewById(R.id.st1_station);
         cofferIV = findViewById(R.id.st1_coffer);
         keyIV = findViewById(R.id.st1_key);
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        shakeDetector = new ShakeDetector();
+        shakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake(int count) {
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(500);
+            }
+        });
 
         // 이미지 그리드뷰
         final GridView itemList = (GridView) findViewById(R.id.grid_img);
@@ -211,6 +229,20 @@ public class Stage1 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        sensorManager.registerListener(shakeDetector, accelerometer,    SensorManager.SENSOR_DELAY_UI);
+    }
+    // background 상황에서도 흔들림을 감지하고 적용할 필요는 없다
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        sensorManager.unregisterListener(shakeDetector);
+        super.onPause();
     }
 
     // 스크린샷
@@ -403,6 +435,8 @@ public class Stage1 extends AppCompatActivity {
             dialog.show();
         }
     }
+
+
 
     // 권한 요청
     private void checkDangerousPermission() {
