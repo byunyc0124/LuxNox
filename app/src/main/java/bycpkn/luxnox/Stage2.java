@@ -180,6 +180,7 @@ public class Stage2 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if (flag == 5) {
+                    txtInMsg.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if (flag == 6) {
@@ -206,8 +207,7 @@ public class Stage2 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if (flag == 2) {
-
-
+                    FuncVoiceOut("엘레베이터 버튼을 눌러야 문이 열립니다."); // 정답 음성 출력
                 }
                 else if (flag == 3) {
                     backgroundImg.setImageResource(R.drawable.stage2_2_2);
@@ -218,6 +218,7 @@ public class Stage2 extends AppCompatActivity {
                     flag = 5;
                 }
                 else if (flag == 5) {
+                    txtInMsg.setVisibility(View.INVISIBLE);
                     backgroundImg.setImageResource(R.drawable.stage2_4);
                     flag = 6;
                 }
@@ -260,6 +261,7 @@ public class Stage2 extends AppCompatActivity {
                     flag = 1;
                 }
                 else if (flag == 5) {
+                    txtInMsg.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if (flag == 6) {
@@ -411,7 +413,6 @@ public class Stage2 extends AppCompatActivity {
         if(VoiceMsg.indexOf("요이땅")>-1) {
             FuncVoiceOut("정답입니다. 문이 열립니다."); // 정답 음성 출력
             evIV.setVisibility(View.INVISIBLE);
-            txtInMsg.setVisibility(View.INVISIBLE);
 
             //final AnimationDrawable drawable = (AnimationDrawable) backgroundImg.getBackground();
             backgroundImg.setImageResource(R.drawable.openev); // 배경 이미지 전환 -> 프레임 애니메이션으로 교체하기
