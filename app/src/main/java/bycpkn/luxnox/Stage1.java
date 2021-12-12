@@ -1,10 +1,12 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
@@ -46,6 +48,9 @@ public class Stage1 extends AppCompatActivity {
     ShakeDetector shakeDetector;
     GridView itemList;
     MyGridAdapter gridAdapter;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     /*
         스테이지1 배경 플래그
@@ -90,6 +95,9 @@ public class Stage1 extends AppCompatActivity {
         stationIV = findViewById(R.id.st1_station);
         cofferIV = findViewById(R.id.st1_coffer);
         keyIV = findViewById(R.id.st1_key);
+
+        preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = preferences.edit();
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -199,6 +207,8 @@ public class Stage1 extends AppCompatActivity {
                     flag = 7;
                 }
                 else if (flag == 7) {
+                    editor.putInt("LuxNox", 2);
+                    editor.apply();
                     Intent intent = new Intent(Stage1.this, Stage2.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);

@@ -1,14 +1,17 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -29,6 +32,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,9 +57,13 @@ public class Stage3 extends AppCompatActivity {
     ImageView open;
 
     ImageView videoPaperIV;
+    ImageView vendingMachineIV, keyIV;
 
     GridView itemList;
     MyGridAdapter gridAdapter;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     // 이미지의 위치를 나타내 줄 변수
     private SensorManager sensorManager;
@@ -101,11 +109,16 @@ public class Stage3 extends AppCompatActivity {
         camera = findViewById(R.id.camera);
 
         videoPaperIV = findViewById(R.id.st3_videopaper);
+        vendingMachineIV = findViewById(R.id.st3_vendingmachine);
+        keyIV = findViewById(R.id.st3_key);
 
         // 이미지 그리드뷰
         itemList = findViewById(R.id.grid_img);
         gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
+
+        preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = preferences.edit();
 
         //기본 화면 사이즈를 받아와서 x축, y축 maxSize 설정
         Point size = new Point();
@@ -119,7 +132,6 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
-                    xAccel = event.values[0];
                     xAccel = event.values[0];
                     yAccel = -event.values[1];
                     updateKey();
@@ -150,6 +162,7 @@ public class Stage3 extends AppCompatActivity {
 
         // 방향 버튼 제어
         // 왼쪽
+        Toast.makeText(Stage3.this, "현재 플래그 : " + flag, Toast.LENGTH_SHORT).show();
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -370,63 +383,184 @@ public class Stage3 extends AppCompatActivity {
         스테이지3 배경 플래그
         0 : stage3_1
         1 : stage3_1s -> videopaper
-        2 : stage3_1right -> vending button click
+        2 : stage3_1right -> vending, key
         3 : stage3_1rightright
         4 : stage3_2
         5 : stage3_3 -> AccelView
     */
     private void flagToSt3Clue(){
-        if (flag == 1){
+        if (flag == 1){ // 떨어진 비디오 쪽지 활성화
             videoPaperIV.setVisibility(View.VISIBLE);
             videoPaperIV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    showSt3ClueDialog();
+                public void onClick(View v) { showSt3ClueDialog(0); }
+            });
 
+            vendingMachineIV.setVisibility(View.INVISIBLE);
+            keyIV.setVisibility(View.INVISIBLE);
+        }
+        else if(flag == 2){ // 자판기 이미지 활성화
+            vendingMachineIV.setVisibility(View.VISIBLE);
+            vendingMachineIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSt3ClueDialog(1);
                 }
             });
+
+            videoPaperIV.setVisibility(View.INVISIBLE);
         }
         else if(flag == 5){
             videoPaperIV.setVisibility(View.INVISIBLE);
             AccelView accelView = new AccelView(this);
             accelView.setBackground(getDrawable(R.drawable.stage3_3));
             setContentView(accelView);
+            videoPaperIV.setVisibility(View.INVISIBLE);
+            vendingMachineIV.setVisibility(View.INVISIBLE);
+            keyIV.setVisibility(View.INVISIBLE);
         }
         else {
             videoPaperIV.setVisibility(View.INVISIBLE);
+            vendingMachineIV.setVisibility(View.INVISIBLE);
+            keyIV.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void showSt3ClueDialog(){
+    private void showSt3ClueDialog(int i){
         Dialog dialog = new Dialog(Stage3.this);
         dialog.setContentView(R.layout.st3dialog);
         ImageView posterIV = (ImageView) dialog.findViewById(R.id.imageViewForSt3Poster);
         VideoView videoView = (VideoView) dialog.findViewById(R.id.st3_clueVV);
-        posterIV.setImageResource(R.drawable.st3_videopaper);
-        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/raw/clue");
-        videoView.setVideoURI(uri);
-        videoView.setMediaController(new MediaController(Stage3.this));
-        dialog.show();
-        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        LinearLayout ll1 = (LinearLayout) dialog.findViewById(R.id.st3_ll1);
+        LinearLayout ll2 = (LinearLayout) dialog.findViewById(R.id.st3_ll2);
+        LinearLayout ll3 = (LinearLayout) dialog.findViewById(R.id.st3_ll3);
+        ImageView iv1 = (ImageView) dialog.findViewById(R.id.st3_iv1_1);
+        iv1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-                videoPlayCnt = 1;
+            public void onClick(View v) {
+                iv1.setBackgroundColor(Color.CYAN);
             }
         });
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        ImageView iv2 = (ImageView) dialog.findViewById(R.id.st3_iv1_2);
+        iv2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCompletion(MediaPlayer mp) {
-                dialog.dismiss();
+            public void onClick(View v) {
+                iv2.setBackgroundColor(Color.CYAN);
             }
         });
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        ImageView iv3 = (ImageView) dialog.findViewById(R.id.st3_iv1_3);
+        iv3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDismiss(DialogInterface dialog) {
-                videoPlayCnt = 0;
+            public void onClick(View v) {
+                iv3.setBackgroundColor(Color.CYAN);
             }
         });
+        ImageView iv4 = (ImageView) dialog.findViewById(R.id.st3_iv1_4);
+        iv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv4.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv5 = (ImageView) dialog.findViewById(R.id.st3_iv2_1);
+        iv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv5.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv6 = (ImageView) dialog.findViewById(R.id.st3_iv2_2);
+        iv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv6.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv7 = (ImageView) dialog.findViewById(R.id.st3_iv2_3);
+        iv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv7.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv8 = (ImageView) dialog.findViewById(R.id.st3_iv2_4);
+        iv8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv8.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv9 = (ImageView) dialog.findViewById(R.id.st3_iv3_1);
+        iv9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv9.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv10 = (ImageView) dialog.findViewById(R.id.st3_iv3_2);
+        iv10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv10.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv11 = (ImageView) dialog.findViewById(R.id.st3_iv3_3);
+        iv11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv11.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv12 = (ImageView) dialog.findViewById(R.id.st3_iv3_4);
+        iv12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv12.setBackgroundColor(Color.CYAN);
+            }
+        });
+
+        if(i==0){
+            posterIV.setImageResource(R.drawable.st3_videopaper);
+            videoView.setVisibility(View.VISIBLE);
+            Uri uri = Uri.parse("android.resource://" + getPackageName() + "/raw/clue");
+            videoView.setVideoURI(uri);
+            videoView.setMediaController(new MediaController(Stage3.this));
+            dialog.show();
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.start();
+                    videoPlayCnt = 1;
+                }
+            });
+            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    videoPlayCnt = 0;
+                }
+            });
+        }
+        else if(i==1){ // 자판기 이미지 활성화
+            posterIV.setImageResource(R.drawable.st3_vending);
+            dialog.show();
+            ll1.setVisibility(View.VISIBLE);
+            ll2.setVisibility(View.VISIBLE);
+            ll3.setVisibility(View.VISIBLE);
+        }
+        else if(i==2){
+            posterIV.setImageResource(R.drawable.st3_key);
+            dialog.show();
+        }
+    }
+
+    private void changeColor(){
 
     }
 

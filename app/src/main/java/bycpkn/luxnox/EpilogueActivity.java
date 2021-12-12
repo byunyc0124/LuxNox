@@ -2,7 +2,9 @@ package bycpkn.luxnox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -31,6 +33,9 @@ public class EpilogueActivity extends AppCompatActivity {
 
     SoundPool soundPool;
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,9 @@ public class EpilogueActivity extends AppCompatActivity {
 
         fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fadein);
         growAnim = AnimationUtils.loadAnimation(this, R.anim.grow);
+
+        preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = preferences.edit();
 
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         int sound_beep_alert = soundPool.load(this, R.raw.bell, 1);

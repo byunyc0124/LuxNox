@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="400dp"
+    android:layout_height="400dp"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,12 +12,133 @@
 
         <ImageView
             android:id="@+id/imageViewForSt3Poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:src="@drawable/st3_vending"/>
+
         <VideoView
             android:id="@+id/st3_clueVV"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/st3_ll1"
+            android:visibility="invisible">
+            <ImageView
+                android:id="@+id/st3_iv1_1"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="40dp"/>
+            <ImageView
+                android:id="@+id/st3_iv1_2"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="35dp"/>
+            <ImageView
+                android:id="@+id/st3_iv1_3"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="25dp"/>
+            <ImageView
+                android:id="@+id/st3_iv1_4"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="35dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/st3_ll2"
+            android:visibility="invisible">
+            <ImageView
+                android:id="@+id/st3_iv2_1"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="40dp"/>
+            <ImageView
+                android:id="@+id/st3_iv2_2"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="35dp"/>
+            <ImageView
+                android:id="@+id/st3_iv2_3"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="27dp"/>
+            <ImageView
+                android:id="@+id/st3_iv2_4"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="33dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/st3_ll3"
+            android:visibility="invisible">
+            <ImageView
+                android:id="@+id/st3_iv3_1"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="40dp"/>
+            <ImageView
+                android:id="@+id/st3_iv3_2"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="35dp"/>
+            <ImageView
+                android:id="@+id/st3_iv3_3"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="32dp"/>
+            <ImageView
+                android:id="@+id/st3_iv3_4"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/st3_videopaper"
+                android:backgroundTint="@color/norang"
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="28dp"/>/>
+        </LinearLayout>
 
     </FrameLayout>
 
