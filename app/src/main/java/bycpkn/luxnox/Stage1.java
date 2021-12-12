@@ -224,7 +224,7 @@ public class Stage1 extends AppCompatActivity {
 
         try {
             // image naming and path  to include sd card  appending name you choose for file
-            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/DCIM/" + now + ".jpg";
 
             // create bitmap screen capture
             View v1 = getWindow().getDecorView().getRootView();
