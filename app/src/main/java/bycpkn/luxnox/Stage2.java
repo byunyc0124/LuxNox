@@ -144,6 +144,7 @@ public class Stage2 extends AppCompatActivity {
             public void onClick(View v) {
                 showSt2ClueDialog(0);
                 gridAdapter.changeImage(0, R.drawable.st2_red);
+                redIV.setVisibility(View.INVISIBLE);
             }
         });
         greenIV.setVisibility(View.VISIBLE);
@@ -152,6 +153,7 @@ public class Stage2 extends AppCompatActivity {
             public void onClick(View v) {
                 showSt2ClueDialog(1);
                 gridAdapter.changeImage(1, R.drawable.st2_green);
+                greenIV.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -451,6 +453,8 @@ public class Stage2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt2ClueDialog(0);
+                    gridAdapter.changeImage(0, R.drawable.st2_red);
+                    redIV.setVisibility(View.INVISIBLE);
                 }
             });
             greenIV.setVisibility(View.VISIBLE);
@@ -458,9 +462,10 @@ public class Stage2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt2ClueDialog(1);
+                    gridAdapter.changeImage(1, R.drawable.st2_green);
+                    greenIV.setVisibility(View.INVISIBLE);
                 }
             });
-
             blueIV.setVisibility(View.INVISIBLE);
             colorsIV.setVisibility(View.INVISIBLE);
             evIV.setVisibility(View.INVISIBLE);
@@ -473,6 +478,7 @@ public class Stage2 extends AppCompatActivity {
                 public void onClick(View v) {
                     showSt2ClueDialog(2);
                     gridAdapter.changeImage(2, R.drawable.st2_blue);
+                    blueIV.setVisibility(View.INVISIBLE);
                 }
             });
             colorsIV.setVisibility(View.VISIBLE);
@@ -481,9 +487,9 @@ public class Stage2 extends AppCompatActivity {
                 public void onClick(View v) {
                     showSt2ClueDialog(3);
                     gridAdapter.changeImage(3, R.drawable.st2_colors);
+                    colorsIV.setVisibility(View.INVISIBLE);
                 }
             });
-
             redIV.setVisibility(View.INVISIBLE);
             greenIV.setVisibility(View.INVISIBLE);
             evIV.setVisibility(View.INVISIBLE);

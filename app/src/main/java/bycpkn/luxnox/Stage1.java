@@ -185,7 +185,11 @@ public class Stage1 extends AppCompatActivity {
                 }
                 else if (flag == 4) {
                     backgroundImg.setImageResource(R.drawable.stage1_4);
-                    flag = 6;
+                    if (keyCnt == 1) {
+                        flag = 6;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "문이 잠겨있다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
@@ -195,13 +199,9 @@ public class Stage1 extends AppCompatActivity {
                     flag = 7;
                 }
                 else if (flag == 7) {
-                    if (keyCnt == 1) {
-                        Intent intent = new Intent(Stage1.this, Stage2.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(Stage1.this, Stage2.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }
                 flagToSt1Clue();
             }
