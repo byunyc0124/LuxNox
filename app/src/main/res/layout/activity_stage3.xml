@@ -86,6 +86,17 @@
             android:src="@drawable/arrow_right"
             android:clickable="true"
             android:background="@drawable/ripple"/>
+
+        <ImageView
+            android:id="@+id/st3_videopaper"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="650dp"
+            android:layout_marginLeft="290dp"
+            android:background="@drawable/st3_videopaper"
+            android:backgroundTint="#55ffffff"
+            android:clickable="true"
+            android:visibility="invisible"/>
     </FrameLayout>
 
 

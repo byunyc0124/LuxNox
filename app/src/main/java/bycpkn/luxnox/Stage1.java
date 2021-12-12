@@ -1,20 +1,18 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
-import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +21,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 
 public class Stage1 extends AppCompatActivity {
     ImageView left;
@@ -133,7 +126,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-                flagToClue();
+                flagToSt1Clue();
             }
         });
 
@@ -169,7 +162,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-                flagToClue();
+                flagToSt1Clue();
             }
         });
 
@@ -206,7 +199,7 @@ public class Stage1 extends AppCompatActivity {
                 else if (flag == 7) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-                flagToClue();
+                flagToSt1Clue();
             }
         });
 
@@ -269,22 +262,45 @@ public class Stage1 extends AppCompatActivity {
         6 : stage1_4
         7 : stage1_5
      */
-    private void flagToClue(){
+    private void flagToSt1Clue(){
         if (flag == 1){
             cofferIV.setVisibility(View.VISIBLE);
+            cofferIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) { showSt1ClueDialog(0); }
+            });
             book1IV.setVisibility(View.INVISIBLE);
             book2IV.setVisibility(View.INVISIBLE);
             book3IV.setVisibility(View.INVISIBLE);
             book4IV.setVisibility(View.INVISIBLE);
             book5IV.setVisibility(View.INVISIBLE);
-            //keyIV.setVisibility(View.VISIBLE);
         }
         else if(flag == 5){
             book1IV.setVisibility(View.VISIBLE);
+            book1IV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {showSt1ClueDialog(1); }
+            });
             book2IV.setVisibility(View.VISIBLE);
+            book2IV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {showSt1ClueDialog(2);}
+            });
             book3IV.setVisibility(View.VISIBLE);
+            book3IV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {showSt1ClueDialog(3);}
+            });
             book4IV.setVisibility(View.VISIBLE);
+            book4IV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {showSt1ClueDialog(4);}
+            });
             book5IV.setVisibility(View.VISIBLE);
+            book5IV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {showSt1ClueDialog(5); }
+            });
             cofferIV.setVisibility(View.INVISIBLE);
             //stationIV.setVisibility(View.VISIBLE);
         }
@@ -295,6 +311,96 @@ public class Stage1 extends AppCompatActivity {
             book3IV.setVisibility(View.INVISIBLE);
             book4IV.setVisibility(View.INVISIBLE);
             book5IV.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void showSt1ClueDialog(int i){
+        Dialog dialog = new Dialog(Stage1.this);
+        dialog.setContentView(R.layout.st1dialog);
+        ImageView posterIV = (ImageView) dialog.findViewById(R.id.imageViewForPoster);
+        ImageView openIV = (ImageView) dialog.findViewById(R.id.cofferOpenBtn);
+        ImageView keyIV = (ImageView) dialog.findViewById(R.id.cofferKey);
+        TextView firstTV = (TextView) dialog.findViewById(R.id.cofferFirstBtn);
+        TextView secondTV = (TextView) dialog.findViewById(R.id.cofferSecondBtn);
+        TextView thirdTV = (TextView) dialog.findViewById(R.id.cofferThirdBtn);
+
+        if (i==0){
+            posterIV.setImageResource(R.drawable.st1_coffer);
+            dialog.show();
+            openIV.setOnClickListener(new View.OnClickListener() { // cofferIV 이미지 바꾸기 위한 이미지뷰
+                @Override
+                public void onClick(View v) {
+                    posterIV.setImageResource(R.drawable.st1_cofferpw);
+                    firstTV.setVisibility(View.VISIBLE);
+                    firstTV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String string = firstTV.getText().toString();
+                            int i = Integer.parseInt(string);
+                            firstTV.setText(String.valueOf(++i));
+                            if(i==10) firstTV.setText("0");
+                        }
+                    });
+                    secondTV.setVisibility(View.VISIBLE);
+                    secondTV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String string = secondTV.getText().toString();
+                            int i = Integer.parseInt(string);
+                            secondTV.setText(String.valueOf(++i));
+                            if(i==10) secondTV.setText("0");
+                        }
+                    });
+                    thirdTV.setVisibility(View.VISIBLE);
+                    thirdTV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String string = thirdTV.getText().toString();
+                            int i = Integer.parseInt(string);
+                            thirdTV.setText(String.valueOf(++i));
+                            if(i==10) thirdTV.setText("0");
+                        }
+                    });
+                    String fString = firstTV.getText().toString();
+                    int i1 = Integer.parseInt(fString);
+                    String sString = secondTV.getText().toString();
+                    int i2 = Integer.parseInt(sString);
+                    String tString = thirdTV.getText().toString();
+                    int i3 = Integer.parseInt(tString);
+                    if(i1==2 && i2==1 && i3==4){
+                        posterIV.setImageResource(R.drawable.st1_cofferopen);
+                        keyIV.setVisibility(View.VISIBLE);
+                        keyIV.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // 단서 획득 후 문 따고 나갈 수 있게
+                            }
+                        });
+                        firstTV.setVisibility(View.INVISIBLE);
+                        secondTV.setVisibility(View.INVISIBLE);
+                        thirdTV.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
+        }
+        else if(i==1){
+            posterIV.setImageResource(R.drawable.st1_book1);
+            dialog.show();
+        }
+        else if(i==2){
+            posterIV.setImageResource(R.drawable.st1_book2);
+            dialog.show();
+        }
+        else if(i==3){
+            posterIV.setImageResource(R.drawable.st1_book3);
+            dialog.show();
+        }
+        else if(i==4){
+            posterIV.setImageResource(R.drawable.st1_book4);
+            dialog.show();
+        }
+        else if(i==5){
+            posterIV.setImageResource(R.drawable.st1_book5);
+            dialog.show();
         }
     }
 
