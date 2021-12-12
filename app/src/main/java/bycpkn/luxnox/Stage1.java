@@ -458,9 +458,6 @@ public class Stage1 extends AppCompatActivity {
         }
     }
 
-
-
-
     // 권한 요청
     private void checkDangerousPermission() {
         String[] permissions = {
