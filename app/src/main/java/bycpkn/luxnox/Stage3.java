@@ -409,7 +409,9 @@ public class Stage3 extends AppCompatActivity {
             videoPaperIV.setVisibility(View.VISIBLE);
             videoPaperIV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) { showSt3ClueDialog(0); }
+                public void onClick(View v) {
+                    showSt3ClueDialog(0);
+                }
             });
 
             vendingMachineIV.setVisibility(View.INVISIBLE);
@@ -667,6 +669,7 @@ public class Stage3 extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 showSt3ClueDialog(2);
+                                gridAdapter.changeImage(1, R.drawable.st3_key);
                             }
                         });
                     }
