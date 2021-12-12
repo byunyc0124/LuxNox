@@ -279,6 +279,8 @@ public class Stage3 extends AppCompatActivity {
             canvas.drawBitmap(key, xPos, yPos, null);
             if(xPos >= 500 && xPos<= 600 && yPos >=1000 && yPos <=1200) { // 특정 조건에 키가 위치했을 때
                 canvas.drawBitmap(opendoor, 550, 800, null);
+                editor.putInt("LuxNox", 4);
+                editor.apply();
                 setContentView(R.layout.activity_loading);
                 Intent fin = new Intent(Stage3.this, EpilogueActivity.class);
                 startActivity(fin);
