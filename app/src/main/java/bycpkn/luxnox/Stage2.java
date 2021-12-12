@@ -84,6 +84,9 @@ public class Stage2 extends AppCompatActivity {
         blueIV = findViewById(R.id.st2_blue);
         colorsIV = findViewById(R.id.st2_colors);
 
+        redIV.setVisibility(View.VISIBLE);
+        greenIV.setVisibility(View.VISIBLE);
+
         // 방향 버튼 제어
         // 왼쪽
         left.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +120,7 @@ public class Stage2 extends AppCompatActivity {
                 else if (flag == 8) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-
+                flagToSt2Clue();
             }
         });
 
@@ -158,7 +161,7 @@ public class Stage2 extends AppCompatActivity {
                 else if (flag == 8) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-
+                flagToSt2Clue();
             }
         });
 
@@ -197,7 +200,7 @@ public class Stage2 extends AppCompatActivity {
                 else if (flag == 8) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-
+                flagToSt2Clue();
             }
         });
 
@@ -248,6 +251,37 @@ public class Stage2 extends AppCompatActivity {
         Uri uri = Uri.fromFile(imageFile);
         intent.setDataAndType(uri, "image/*");
         startActivity(intent);
+    }
+
+    /*
+        스테이지2 배경 플래그
+        0 : stage2_1 -> red, green
+        1 : stage2_1right -> blue, colors
+        2 : stage2_2
+        3 : stage2_2_1
+        4 : stage2_2_2
+        5 : stage2_3
+        6 : stage2_4
+        7 : stage2_5
+        8 : stage2_6
+    */
+    private void flagToSt2Clue(){
+        if (flag == 0){
+            redIV.setVisibility(View.VISIBLE);
+            greenIV.setVisibility(View.VISIBLE);
+            blueIV.setVisibility(View.INVISIBLE);
+            colorsIV.setVisibility(View.INVISIBLE);
+        }
+        else if(flag == 1){
+            redIV.setVisibility(View.INVISIBLE);
+            greenIV.setVisibility(View.INVISIBLE);
+            blueIV.setVisibility(View.VISIBLE);
+            colorsIV.setVisibility(View.VISIBLE);
+        }
+        else {
+            blueIV.setVisibility(View.INVISIBLE);
+            colorsIV.setVisibility(View.INVISIBLE);
+        }
     }
 
     // 권한 요청
