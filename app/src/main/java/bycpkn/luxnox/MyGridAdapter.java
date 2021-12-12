@@ -11,7 +11,7 @@ public class MyGridAdapter extends BaseAdapter {
     Context context;
     View dialogView;
     ImageView ivItem;
-    Integer[] itemID = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground};
+    Integer[] itemID = {R.drawable.item, R.drawable.item, R.drawable.item, R.drawable.item};
 
     public MyGridAdapter(Context c) {
         context = c;
@@ -36,7 +36,7 @@ public class MyGridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ImageView imageView = new ImageView(context);
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(200,200));
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(180,180));
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setPadding(5, 5, 10, 10);
 
