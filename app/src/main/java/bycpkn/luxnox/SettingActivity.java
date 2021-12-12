@@ -37,11 +37,11 @@ public class SettingActivity extends AppCompatActivity {
 
     public void InitializeSettingData() {
         settingDataList = new ArrayList<SettingData>();
-        settingDataList.add(new SettingData("알림"));
-        settingDataList.add(new SettingData("공지"));
-        settingDataList.add(new SettingData("게임 방법"));
-        settingDataList.add(new SettingData("에이쁠주세요"));
-        settingDataList.add(new SettingData("히히"));
+        settingDataList.add(new SettingData("윤용익 교수님"));
+        settingDataList.add(new SettingData("모프 수업"));
+        settingDataList.add(new SettingData("재밌어요! 짱!!"));
+        settingDataList.add(new SettingData("만든 이"));
+        settingDataList.add(new SettingData("경나 & 영채"));
     }
 }
 
