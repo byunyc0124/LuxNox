@@ -49,6 +49,7 @@ public class Stage3 extends AppCompatActivity {
     ImageView videoPaperIV;
 
     GridView itemList;
+    MyGridAdapter gridAdapter;
 
     // 이미지의 위치를 나타내 줄 변수
     private SensorManager sensorManager;
@@ -95,8 +96,8 @@ public class Stage3 extends AppCompatActivity {
         videoPaperIV = findViewById(R.id.st3_videopaper);
 
         // 이미지 그리드뷰
-        final GridView itemList = (GridView) findViewById(R.id.grid_img);
-        MyGridAdapter gridAdapter = new MyGridAdapter(this);
+        itemList = findViewById(R.id.grid_img);
+        gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
 
         //기본 화면 사이즈를 받아와서 x축, y축 maxSize 설정
@@ -111,6 +112,7 @@ public class Stage3 extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                    xAccel = event.values[0];
                     xAccel = event.values[0];
                     yAccel = -event.values[1];
                     updateKey();
@@ -140,7 +142,6 @@ public class Stage3 extends AppCompatActivity {
 
         // 방향 버튼 제어
         // 왼쪽
-        Toast.makeText(Stage3.this, "현재 플래그 : " + flag, Toast.LENGTH_SHORT).show();
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,8 +162,8 @@ public class Stage3 extends AppCompatActivity {
                     flag = 2;
                 }
                 else if (flag == 4) {
-                    backgroundImg.setImageResource(R.drawable.stage3_1);
-                    flag = 0;
+                    backgroundImg.setImageResource(R.drawable.stage3_1rightright);
+                    flag = 3;
                 }
                 else if (flag == 5) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
@@ -216,8 +217,8 @@ public class Stage3 extends AppCompatActivity {
                     flag = 3;
                 }
                 else if (flag == 3) {
-                    backgroundImg.setImageResource(R.drawable.stage3_1);
-                    flag = 0;
+                    backgroundImg.setImageResource(R.drawable.stage3_2);
+                    flag = 4;
                 }
                 else if (flag == 4) {
                     backgroundImg.setImageResource(R.drawable.stage3_1);
@@ -345,7 +346,10 @@ public class Stage3 extends AppCompatActivity {
             videoPaperIV.setVisibility(View.VISIBLE);
             videoPaperIV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) { showSt3ClueDialog(); }
+                public void onClick(View v) {
+                    showSt3ClueDialog();
+                    gridAdapter.changeImage(0, R.drawable.st3_vendingmachine);
+                }
             });
         }
         else if(flag == 5){
