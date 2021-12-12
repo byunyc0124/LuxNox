@@ -51,7 +51,7 @@ public class MyGridAdapter extends BaseAdapter {
                 AlertDialog.Builder dig = new AlertDialog.Builder(context);
                 ivItem = (ImageView) dialogView.findViewById(R.id.imageViewForPoster);
                 ivItem.setImageResource(itemID[pos]);
-                dig.setTitle("아이템");
+                dig.setTitle("단서");
                 dig.setIcon(itemID[pos]);
                 dig.setView(dialogView);
                 dig.setNegativeButton("닫기", null);

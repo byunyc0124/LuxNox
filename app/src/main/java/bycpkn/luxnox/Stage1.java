@@ -36,6 +36,9 @@ public class Stage1 extends AppCompatActivity {
     ImageView book1IV, book2IV, book3IV, book4IV, book5IV;
     ImageView stationIV, cofferIV, keyIV;
 
+    GridView itemList;
+    MyGridAdapter gridAdapter;
+
     /*
         스테이지1 배경 플래그
         0 : stage1_1
@@ -77,9 +80,13 @@ public class Stage1 extends AppCompatActivity {
         keyIV = findViewById(R.id.st1_key);
 
         // 이미지 그리드뷰
-        final GridView itemList = (GridView) findViewById(R.id.grid_img);
-        MyGridAdapter gridAdapter = new MyGridAdapter(this);
+        itemList = findViewById(R.id.grid_img);
+        gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
+        //itemList.getId()
+        // gridAdapter.notifyDataSetChanged();
+
+
 
         checkDangerousPermission();
         // 스크린샷
@@ -279,27 +286,42 @@ public class Stage1 extends AppCompatActivity {
             book1IV.setVisibility(View.VISIBLE);
             book1IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {showSt1ClueDialog(1); }
+                public void onClick(View v) {
+                    showSt1ClueDialog(1);
+                    // List item 수정
+                    //int pos = itemList.getItemAtPosition(0);
+                    int pos = 0;
+                    //gridAdapter.getItem(pos).setImageResource(1);
+                    gridAdapter.notifyDataSetChanged(); // 데이터 변경
+                }
             });
             book2IV.setVisibility(View.VISIBLE);
             book2IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {showSt1ClueDialog(2);}
+                public void onClick(View v) {
+                    showSt1ClueDialog(2);
+                }
             });
             book3IV.setVisibility(View.VISIBLE);
             book3IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {showSt1ClueDialog(3);}
+                public void onClick(View v) {
+                    showSt1ClueDialog(3);
+                }
             });
             book4IV.setVisibility(View.VISIBLE);
             book4IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {showSt1ClueDialog(4);}
+                public void onClick(View v) {
+                    showSt1ClueDialog(4);
+                }
             });
             book5IV.setVisibility(View.VISIBLE);
             book5IV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {showSt1ClueDialog(5); }
+                public void onClick(View v) {
+                    showSt1ClueDialog(5);
+                }
             });
             cofferIV.setVisibility(View.INVISIBLE);
             //stationIV.setVisibility(View.VISIBLE);

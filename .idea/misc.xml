@@ -21,10 +21,6 @@
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/activity_prologue.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/activity_stage1.xml" value="0.35520833333333335" />
-        <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/activity_stage2.xml" value="0.35520833333333335" />
-        <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/activity_stage3.xml" value="0.35520833333333335" />
-        <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/dialog.xml" value="0.35520833333333335" />
-        <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/layout/st3dialog.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/mipmap-anydpi-v26/icon_luxnox.xml" value="0.1" />
@@ -33,6 +29,7 @@
         <entry key="..\:/Users/byuny/AndroidStudioProjects/LuxNox/app/src/main/res/mipmap-anydpi-v26/icon_luxnox_round.xml" value="0.21145833333333333" />
         <entry key="..\:/mobile_programming/luxnox_ver2/LuxNox/app/src/main/res/drawable/openev.xml" value="0.14583333333333334" />
         <entry key="..\:/mobile_programming/luxnox_ver2/LuxNox/app/src/main/res/font/font.xml" value="0.2838541666666667" />
+        <entry key="..\:/mobile_programming/luxnox_ver2/LuxNox/app/src/main/res/layout/activity_stage1.xml" value="0.2" />
         <entry key="..\:/mobile_programming/luxnox_ver2/LuxNox/app/src/main/res/layout/activity_stage2.xml" value="0.36403508771929827" />
         <entry key="..\:/mobile_programming/luxnox_ver2/LuxNox/app/src/main/res/layout/activity_stage3.xml" value="0.25364583333333335" />
       </map>
