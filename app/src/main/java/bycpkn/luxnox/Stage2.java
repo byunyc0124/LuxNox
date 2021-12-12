@@ -1,9 +1,11 @@
 package bycpkn.luxnox;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -55,6 +57,9 @@ public class Stage2 extends AppCompatActivity {
     TextView txtInMsg; // 음성 인식 출력 텍스트뷰
     SpeechRecognizer mRecognizer;
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     //음성 출력용
     TextToSpeech tts;
     /*
@@ -92,6 +97,9 @@ public class Stage2 extends AppCompatActivity {
         itemList = findViewById(R.id.grid_img);
         gridAdapter = new MyGridAdapter(this);
         itemList.setAdapter(gridAdapter);
+
+        preferences = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = preferences.edit();
 
         //음성인식
         Intent stt_intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
