@@ -242,6 +242,8 @@ public class Stage2 extends AppCompatActivity {
                     flag = 8;
                 }
                 else if (flag == 8) {
+                    editor.putInt("LuxNox", 3);
+                    editor.apply();
                     Intent intent = new Intent(Stage2.this, Stage3.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);

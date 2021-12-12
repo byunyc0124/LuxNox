@@ -18,12 +18,16 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.GnssAntennaInfo;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -31,6 +35,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -50,6 +55,7 @@ public class Stage3 extends AppCompatActivity {
     ImageView backgroundImg;
     ImageView setting;
     ImageView camera;
+    ImageView open;
 
     ImageView videoPaperIV;
     ImageView vendingMachineIV, keyIV;
@@ -68,6 +74,7 @@ public class Stage3 extends AppCompatActivity {
     private float yPos, yAccel, yVel = 0.0f;
     private float xMax, yMax;
     private Bitmap key;
+    private Bitmap opendoor;
 
     /*
         스테이지3 배경 플래그
@@ -162,7 +169,6 @@ public class Stage3 extends AppCompatActivity {
 
         // 방향 버튼 제어
         // 왼쪽
-        Toast.makeText(Stage3.this, "현재 플래그 : " + flag, Toast.LENGTH_SHORT).show();
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,15 +272,43 @@ public class Stage3 extends AppCompatActivity {
         public AccelView(Context context) {
             super(context);
             Bitmap keySrc = BitmapFactory.decodeResource(getResources(), R.drawable.st3_key);
+            Bitmap openSrc =BitmapFactory.decodeResource(getResources(), R.drawable.arrow_straight);
+
             final int dstWidth = 100;
             final int dstHeight = 200;
+
             key = Bitmap.createScaledBitmap(keySrc, dstWidth, dstHeight, true);
+            opendoor = Bitmap.createScaledBitmap(openSrc, dstWidth, dstHeight, true);
         }
         @Override
         protected void onDraw(Canvas canvas) {
             canvas.drawBitmap(key, xPos, yPos, null);
+            if(xPos >= 500 && xPos<= 600 && yPos >=1000 && yPos <=1200) { // 특정 조건에 키가 위치했을 때
+                canvas.drawBitmap(opendoor, 550, 800, null);
+                editor.putInt("LuxNox", 4);
+                editor.apply();
+                setContentView(R.layout.activity_loading);
+                Intent fin = new Intent(Stage3.this, EpilogueActivity.class);
+                startActivity(fin);
+            }
             invalidate();
         }
+/*
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            // 현재의 터치 액션의 종류를 받아온다.
+            int action = event.getAction();
+            // 터치 된 x좌표
+            float x = event.getX();
+            // 터치 된 y좌표
+            float y = event.getY();
+            if(x >= 500 && x <= 600 && y >= 700 && y <= 800) {
+                Intent fin = new Intent(Stage3.this, EpilogueActivity.class);
+                startActivity(fin);
+            }
+            return super.onTouchEvent(event);
+        }
+*/
     }
     @Override
     protected void onResume() {
@@ -292,7 +326,7 @@ public class Stage3 extends AppCompatActivity {
     }
 
     private void updateKey(){
-        float frameTime = 0.4f;
+        float frameTime = 0.2f;
         xVel += (xAccel * frameTime);
         yVel += (yAccel * frameTime);
 
@@ -301,16 +335,16 @@ public class Stage3 extends AppCompatActivity {
 
         xPos -= xS;								//x축 위치
         yPos -= yS;								//y축 위치
-
         if (xPos > xMax) {
             xPos = xMax;
-        } else if (xPos < 0) {
+        }
+        else if (xPos < 0) {
             xPos = 0;
         }
-
         if (yPos > yMax) {
             yPos = yMax;
-        } else if (yPos < 0) {
+        }
+        else if (yPos < 0) {
             yPos = 0;
         }
     }
