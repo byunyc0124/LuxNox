@@ -168,7 +168,8 @@ public class Stage2 extends AppCompatActivity {
                     flag = 2;
                 }
                 else if (flag == 2) {
-                    Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();
+                    backgroundImg.setImageResource(R.drawable.stage2_1);
+                    flag = 0;
                 }
                 else if (flag == 3) {
                     Toast.makeText(getApplicationContext(),"이동할 공간이 없습니다.", Toast.LENGTH_SHORT).show();

@@ -125,7 +125,7 @@
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/st2_evbtn"
-            android:layout_width="30dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="360dp"
             android:layout_marginLeft="340dp"
