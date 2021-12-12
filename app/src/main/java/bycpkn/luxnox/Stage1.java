@@ -111,12 +111,7 @@ public class Stage1 extends AppCompatActivity {
         // 이미지 그리드뷰
         itemList = findViewById(R.id.grid_img);
         gridAdapter = new MyGridAdapter(this);
-
         itemList.setAdapter(gridAdapter);
-        //itemList.getId()
-        // gridAdapter.notifyDataSetChanged();
-
-
 
         checkDangerousPermission();
         // 스크린샷
@@ -332,7 +327,6 @@ public class Stage1 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt1ClueDialog(1);
-                    //gridAdapter.changeImage(0, R.drawable.st1_book1);
                 }
             });
             book2IV.setVisibility(View.VISIBLE);
@@ -340,7 +334,6 @@ public class Stage1 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt1ClueDialog(2);
-                    //gridAdapter.changeImage(1, R.drawable.st1_book2);
                 }
             });
             book3IV.setVisibility(View.VISIBLE);
@@ -348,7 +341,6 @@ public class Stage1 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt1ClueDialog(3);
-                    //gridAdapter.changeImage(2, R.drawable.st1_book3);
                 }
             });
             book4IV.setVisibility(View.VISIBLE);
@@ -356,7 +348,6 @@ public class Stage1 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt1ClueDialog(4);
-                    //gridAdapter.changeImage(3, R.drawable.st1_book3);
                 }
             });
             book5IV.setVisibility(View.VISIBLE);
@@ -364,7 +355,6 @@ public class Stage1 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSt1ClueDialog(5);
-                    //gridAdapter.changeImage(4, R.drawable.st1_book4);
                 }
             });
             cofferIV.setVisibility(View.INVISIBLE);
@@ -439,6 +429,7 @@ public class Stage1 extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 // 단서 획득 후 문 따고 나갈 수 있게
+                                gridAdapter.changeImage(1, R.drawable.st1_key);
                             }
                         });
                         firstTV.setVisibility(View.INVISIBLE);
@@ -478,6 +469,7 @@ public class Stage1 extends AppCompatActivity {
         else if(i==6){
             posterIV.setImageResource(R.drawable.st1_station);
             dialog.show();
+            gridAdapter.changeImage(0, R.drawable.st1_station);
         }
     }
 
