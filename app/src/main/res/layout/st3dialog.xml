@@ -30,84 +30,36 @@
             android:visibility="invisible">
             <ImageView
                 android:id="@+id/st3_iv1_1"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="53dp"/>
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="40dp"/>
             <ImageView
                 android:id="@+id/st3_iv1_2"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="35dp"/>
             <ImageView
                 android:id="@+id/st3_iv1_3"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="25dp"/>
             <ImageView
                 android:id="@+id/st3_iv1_4"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_5"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_6"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_7"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="10dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_8"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_9"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv1_10"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="147dp"
-                android:layout_marginLeft="12dp"/>
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="35dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,84 +69,36 @@
             android:visibility="invisible">
             <ImageView
                 android:id="@+id/st3_iv2_1"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="53dp"/>
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="40dp"/>
             <ImageView
                 android:id="@+id/st3_iv2_2"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="35dp"/>
             <ImageView
                 android:id="@+id/st3_iv2_3"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="27dp"/>
             <ImageView
                 android:id="@+id/st3_iv2_4"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_5"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_6"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_7"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="10dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_8"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_9"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv2_10"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="270dp"
-                android:layout_marginLeft="12dp"/>
+                android:layout_marginTop="212dp"
+                android:layout_marginLeft="33dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -204,84 +108,36 @@
             android:visibility="invisible">
             <ImageView
                 android:id="@+id/st3_iv3_1"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="356dp"
-                android:layout_marginLeft="53dp"/>
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="40dp"/>
             <ImageView
                 android:id="@+id/st3_iv3_2"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="356dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="35dp"/>
             <ImageView
                 android:id="@+id/st3_iv3_3"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="356dp"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="32dp"/>
             <ImageView
                 android:id="@+id/st3_iv3_4"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
                 android:background="@drawable/st3_videopaper"
                 android:backgroundTint="@color/norang"
-                android:layout_marginTop="354dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_5"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="354dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_6"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="354dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_7"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="353dp"
-                android:layout_marginLeft="10dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_8"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="351dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_9"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="351dp"
-                android:layout_marginLeft="9dp"/>
-            <ImageView
-                android:id="@+id/st3_iv3_10"
-                android:layout_width="20dp"
-                android:layout_height="10dp"
-                android:background="@drawable/st3_videopaper"
-                android:backgroundTint="@color/norang"
-                android:layout_marginTop="350dp"
-                android:layout_marginLeft="12dp"/>
+                android:layout_marginTop="303dp"
+                android:layout_marginLeft="28dp"/>/>
         </LinearLayout>
 
     </FrameLayout>

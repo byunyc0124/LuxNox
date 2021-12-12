@@ -408,6 +408,83 @@ public class Stage3 extends AppCompatActivity {
                 iv1.setBackgroundColor(Color.CYAN);
             }
         });
+        ImageView iv2 = (ImageView) dialog.findViewById(R.id.st3_iv1_2);
+        iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv2.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv3 = (ImageView) dialog.findViewById(R.id.st3_iv1_3);
+        iv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv3.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv4 = (ImageView) dialog.findViewById(R.id.st3_iv1_4);
+        iv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv4.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv5 = (ImageView) dialog.findViewById(R.id.st3_iv2_1);
+        iv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv5.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv6 = (ImageView) dialog.findViewById(R.id.st3_iv2_2);
+        iv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv6.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv7 = (ImageView) dialog.findViewById(R.id.st3_iv2_3);
+        iv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv7.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv8 = (ImageView) dialog.findViewById(R.id.st3_iv2_4);
+        iv8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv8.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv9 = (ImageView) dialog.findViewById(R.id.st3_iv3_1);
+        iv9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv9.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv10 = (ImageView) dialog.findViewById(R.id.st3_iv3_2);
+        iv10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv10.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv11 = (ImageView) dialog.findViewById(R.id.st3_iv3_3);
+        iv11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv11.setBackgroundColor(Color.CYAN);
+            }
+        });
+        ImageView iv12 = (ImageView) dialog.findViewById(R.id.st3_iv3_4);
+        iv12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv12.setBackgroundColor(Color.CYAN);
+            }
+        });
 
         if(i==0){
             posterIV.setImageResource(R.drawable.st3_videopaper);
